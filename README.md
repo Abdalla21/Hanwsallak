@@ -30,7 +30,7 @@ Direct communication between senders and travelers for final details.
 
 🛠️ Technologies Used
 
-Backend: .NET
+Backend: Dot Net
 
 Frontend: HTML - CSS - JS
 
