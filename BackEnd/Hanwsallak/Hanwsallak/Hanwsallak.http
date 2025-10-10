@@ -1,0 +1,6 @@
+@Hanwsallak_HostAddress = http://localhost:5072
+
+GET {{Hanwsallak_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,92 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{731AF0D4-C34C-4AC5-AA6C-A2CF971A88FA}|Hanwsallak.Infrastructure\\Hanwsallak.Infrastructure.csproj|c:\\users\\abdalla.ahmed\\source\\repos\\hanwsallak\\backend\\hanwsallak\\hanwsallak.infrastructure\\hanwsallak.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{731AF0D4-C34C-4AC5-AA6C-A2CF971A88FA}|Hanwsallak.Infrastructure\\Hanwsallak.Infrastructure.csproj|solutionrelative:hanwsallak.infrastructure\\hanwsallak.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8982A8FA-6234-4023-84C9-0563F610CF87}|Hanwsallak.Domain\\Hanwsallak.Domain.csproj|c:\\users\\abdalla.ahmed\\source\\repos\\hanwsallak\\backend\\hanwsallak\\hanwsallak.domain\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8982A8FA-6234-4023-84C9-0563F610CF87}|Hanwsallak.Domain\\Hanwsallak.Domain.csproj|solutionrelative:hanwsallak.domain\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{731AF0D4-C34C-4AC5-AA6C-A2CF971A88FA}|Hanwsallak.Infrastructure\\Hanwsallak.Infrastructure.csproj|c:\\users\\abdalla.ahmed\\source\\repos\\hanwsallak\\backend\\hanwsallak\\hanwsallak.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{731AF0D4-C34C-4AC5-AA6C-A2CF971A88FA}|Hanwsallak.Infrastructure\\Hanwsallak.Infrastructure.csproj|solutionrelative:hanwsallak.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5374A2EA-3428-481A-9031-666E1914DB5F}|Hanwsallak\\Hanwsallak.API.csproj|c:\\users\\abdalla.ahmed\\source\\repos\\hanwsallak\\backend\\hanwsallak\\hanwsallak\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5374A2EA-3428-481A-9031-666E1914DB5F}|Hanwsallak\\Hanwsallak.API.csproj|solutionrelative:hanwsallak\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Hanwsallak.Infrastructure",
+              "DocumentMoniker": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\Hanwsallak.Infrastructure\\Hanwsallak.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Hanwsallak.Infrastructure\\Hanwsallak.Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\Hanwsallak.Infrastructure\\Hanwsallak.Infrastructure.csproj",
+              "RelativeToolTip": "Hanwsallak.Infrastructure\\Hanwsallak.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-10T15:26:12.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\Hanwsallak.Domain\\Class1.cs",
+              "RelativeDocumentMoniker": "Hanwsallak.Domain\\Class1.cs",
+              "ToolTip": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\Hanwsallak.Domain\\Class1.cs",
+              "RelativeToolTip": "Hanwsallak.Domain\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T15:25:58.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\Hanwsallak.Infrastructure\\Class1.cs",
+              "RelativeDocumentMoniker": "Hanwsallak.Infrastructure\\Class1.cs",
+              "ToolTip": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\Hanwsallak.Infrastructure\\Class1.cs",
+              "RelativeToolTip": "Hanwsallak.Infrastructure\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T15:25:23.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\Hanwsallak\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "Hanwsallak\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\Hanwsallak\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "Hanwsallak\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T15:24:42.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
