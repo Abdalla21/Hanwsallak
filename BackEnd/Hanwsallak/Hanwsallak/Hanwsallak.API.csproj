@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Hanwsallak.Infrastructure\Hanwsallak.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
