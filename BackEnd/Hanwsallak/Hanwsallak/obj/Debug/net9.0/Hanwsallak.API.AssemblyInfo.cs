@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hanwsallak.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77492f8f7fae75be17616eceb8470e5631ac85af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89fb7e8e01731cf6b56acee9c3702af68f564b7e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hanwsallak.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hanwsallak.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

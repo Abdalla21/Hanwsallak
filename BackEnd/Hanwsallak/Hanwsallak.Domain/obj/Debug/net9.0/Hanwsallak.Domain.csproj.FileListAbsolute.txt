@@ -1,0 +1,13 @@
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\bin\Debug\net9.0\Hanwsallak.Domain.deps.json
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\bin\Debug\net9.0\Hanwsallak.Domain.dll
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\bin\Debug\net9.0\Hanwsallak.Domain.pdb
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\Hanwsallak.Domain.csproj.AssemblyReference.cache
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\Hanwsallak.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\Hanwsallak.Domain.AssemblyInfoInputs.cache
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\Hanwsallak.Domain.AssemblyInfo.cs
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\Hanwsallak.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\Hanwsallak.Domain.sourcelink.json
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\Hanwsallak.Domain.dll
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\refint\Hanwsallak.Domain.dll
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\Hanwsallak.Domain.pdb
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak.Domain\obj\Debug\net9.0\ref\Hanwsallak.Domain.dll
