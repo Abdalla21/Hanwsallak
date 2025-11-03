@@ -31,11 +31,41 @@ namespace Hanwsallak.API.Controllers
 
         // Ahmed Rashedy
         [HttpPost(Name = "GoogleLogin")]
-        public IActionResult GoogleLogin(string token)
+        public async Task<ActionResult<ApplicationResult<JwtTokenModel>>> GoogleLogin(string token)
         {
-            // Login with google using the token
-            return Ok();
+            var payload = await GoogleJsonWebSignature.ValidateAsync(token);
+
+            var user = await userManager.FindByEmailAsync(payload.Email);
+            if (user is null)
+            {
+                user = new ApplicationUser
+                {
+                    Email = payload.Email,
+                    UserName = payload.Email,
+                    FullName = payload.Name,
+                    EmailConfirmed = true
+                };
+                await userManager.CreateAsync(user);
+            }
+
+            UserLoginInfo info = new UserLoginInfo("Google", payload.Subject, "Google");
+            var userLogins = await userManager.GetLoginsAsync(user);
+            if (!userLogins.Any(l => l.LoginProvider == "Google"))
+                await userManager.AddLoginAsync(user, info);
+
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            JwtTokenModel tokenModel = new JwtTokenModel
+            {
+                Token = await GenerateJwtToken(user, true),
+                TokenExpiryHours = 2,
+                TokenExpiration = DateTime.Now.AddHours(2),
+                RefreshToken = await GenerateJwtToken(user, false),
+                RefreshTokenExpiryHours = 24,
+                RefreshTokenExpiration = DateTime.Now.AddDays(1)
+            };
+            return ApiResponseStatus.Ok<JwtTokenModel>(tokenModel);
         }
+
 
         // Ahmed Rashedy
         [HttpPost(Name = "Login")]
