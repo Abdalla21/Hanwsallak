@@ -69,20 +69,53 @@ namespace Hanwsallak.API.Controllers
 
         // Ahmed Rashedy
         [HttpPost(Name = "Login")]
-        public IActionResult Login(LoginDto login)
+        public Task<ActionResult<ApplicationResult<JwtTokenModel>>> Login(LoginDto loginDto)
         {
-            // Login using email and password
-            // if they are valid, create JWT token and return it to the user
-            return Ok();
+        var user = await userManager.FindByEmailAsync(loginDto.Email.ToLower());
+            if (user is null)
+                return ApiResponseStatus.Unauthorized<JwtTokenModel>(Errors.Unauthorized(ErrorConstants.INVALIDUSER, ErrorConstants.INVALIDUSERCODE));
+
+            var result = await _signInManager.PasswordSignInAsync(user, loginDto.Password, isPersistent: false, lockoutOnFailure: false);
+
+            if (!result.Succeeded)
+                return ApiResponseStatus.Unauthorized<JwtTokenModel>(Errors.Unauthorized(ErrorConstants.INVALIDUSER, ErrorConstants.INVALIDUSERCODE));
+
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            JwtTokenModel tokenModel = new JwtTokenModel
+            {
+                Token = await GenerateJwtToken(user, true),
+                TokenExpiryHours = 2,
+                TokenExpiration = DateTime.Now.AddHours(2),
+                RefreshToken = await GenerateJwtToken(user, false),
+                RefreshTokenExpiryHours = 24,
+                RefreshTokenExpiration = DateTime.Now.AddDays(1)
+            };
+            user.RefreshToken = tokenModel.RefreshToken;
+            user.RefreshTokenExpiryTime = tokenModel.RefreshTokenExpiration;
+            await userManager.UpdateAsync(user);
+
+            return ApiResponseStatus.Ok<JwtTokenModel>(tokenModel);
+        
         }
 
 
-        //[HttpPost(Name = "RefreshToken")]
-        //public IActionResult RefreshToken(RefreshTokenDto RefreshToken)
-        //{
-        //    return Ok();
-        //}
+        [HttpPost(Name = "RefreshToken")]
+        public async Task<ActionResult<ApplicationResult<JwtTokenWithoutRefreshTokenModel>>> RefreshToken(RefreshTokenModel RefreshTokenModel)
+        {
+            var user = await userManager.FindByIdAsync(RefreshTokenModel.UserID);
+            if (user is null || user.RefreshToken != RefreshTokenModel.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
+                return ApiResponseStatus.Unauthorized<JwtTokenWithoutRefreshTokenModel>(Errors.Unauthorized(ErrorConstants.INVALIDREFRESHTOKEN, ErrorConstants.INVALIDREFRESHTOKENCODE));
 
+            JwtTokenWithoutRefreshTokenModel tokenModel = new JwtTokenWithoutRefreshTokenModel
+            {
+                Token = await GenerateJwtToken(user, true),
+                ExpiryHours = 2,
+                Expiration = DateTime.Now.AddHours(2)
+            };
+            return ApiResponseStatus.Ok<JwtTokenWithoutRefreshTokenModel>(tokenModel);
+        }
+
+        
         // Ali Makled
         [HttpPost(Name = "ForgotPassword")]
         public IActionResult ForgotPassword(string Email)
