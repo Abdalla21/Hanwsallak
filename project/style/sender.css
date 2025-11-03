@@ -1,0 +1,276 @@
+/*  الإعدادات العامة */
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #fffbe8; /* خلفية بلون كريمي مريح */
+  color: #2f3233;
+  overflow-x: hidden;
+}
+
+/*  الهيدر */
+.navbar {
+  background-color: #2f3233 !important;
+  transition: all 0.3s ease;
+  height: 80px;
+}
+
+.custom-logo-margin {
+  margin-right: 7.5rem !important;
+  transform: scale(1.3);
+  transform-origin: right center;
+}
+
+@media (max-width: 768px) {
+  .custom-logo-margin {
+    margin-right: 1rem !important;
+    transform: scale(1);
+  }
+}
+
+/*  عناصر القائمة */
+.navbar-nav .nav-link {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #2ecc71 !important;
+  transform: scale(1.05);
+}
+
+/*  الهيدر أثناء التمرير */
+.navbar.scrolled {
+  background-color: #1e1e1e !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/*  زر تحميل التطبيق */
+.navbar .btn-success {
+  font-weight: 600;
+  background-color: #2ecc71;
+  border: none;
+  transition: 0.3s;
+}
+
+.navbar .btn-success:hover {
+  background-color: #27ae60 !important;
+}
+
+/*  القسم الرئيسي */
+.hero-section {
+  background-color: #232121;
+}
+
+.hero-section h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.hero-section h1 span {
+  color: #2ecc71;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #dad5d5;
+}
+
+.hero-section img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*  الأزرار */
+.btn-success {
+  background-color: #2ecc71;
+  border: none;
+  font-weight: 700;
+}
+
+.btn-success:hover {
+  background-color: #27ae60 !important;
+  transform: translateY(-2px);
+}
+
+/* 🔹 تحسينات عامة */
+@media (max-width: 992px) {
+  .navbar {
+    height: auto;
+  }
+
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+}
+
+/*  قسم لماذا تختار وصّلي */
+.why-section {
+  background-color: #2f3233;
+}
+
+.feature-box {
+  background-color: #1f2122;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.feature-box .icon {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+  font-size: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+}
+
+.feature-box h5 {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.feature-box p {
+  color: #cccccc;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+/*  قسم خدمات مميزة  */
+/*  قسم خدمات مميزة للركاب */
+.services-section {
+  background-color: #2b2b2b;
+}
+
+.service-box {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.service-box.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 💚 أيقونات خضراء مع تأثير */
+.service-box .icon i {
+  color: #2ecc71 !important; /* اللون الأخضر */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-box .icon:hover i {
+  color: #27ae60 !important; /* أخضر أغمق عند التمرير */
+  animation: pulse 1s ease;
+}
+
+/*  تأثير النبض للأيقونات */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46,204,113, 0.4); }
+  70% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(46,204,113, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46,204,113, 0); }
+}
+
+/*  تنسيق القوائم */
+.service-box ul li {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #eaeaea;
+}
+/*  قسم الأسئلة الشائعة */
+.faq-section {
+  background-color: #1e1e1e;
+  color: #fff;
+  padding: 80px 0;
+}
+
+/*  عناصر الأسئلة */
+.accordion-item {
+  border-radius: 15px !important;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: none;
+}
+
+.accordion-button {
+  background-color: #2b2b2b !important;
+  color: #ffffff !important;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: none !important;
+}
+
+/* عند الفتح  */
+.accordion-button:not(.collapsed) {
+  background-color: #2ecc71 !important;
+  color: #fff !important;
+}
+
+/*  السهم */
+.accordion-button::after {
+  filter: invert(67%) sepia(55%) saturate(360%) hue-rotate(80deg) brightness(100%) contrast(95%);
+}
+
+/*  عند التركيز */
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(46, 204, 113, 0.4) !important;
+}
+
+/*  النص الداخلي */
+.accordion-body {
+  background-color: #2b2b2b !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  line-height: 1.8;
+}
+.testimonials-section {
+  background-color: #1e1e1e;
+}
+
+.testimonial-box {
+  background-color: #2b2b2b;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+}
+
+.testimonial-box img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 2px solid #2ecc71;
+}
+
+.stars {
+  color: #f1c40f;
+  font-size: 1.2rem;
+}
+
+.text-muted {
+  color: #aaa !important;
+}
+

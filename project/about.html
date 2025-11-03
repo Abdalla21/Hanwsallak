@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نبذة عنا | تطبيق هنوصلك</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style/about.css"> 
+</head>
+<body class="bg-dark">
+
+    <div id="header"></div>
+    <script>
+        fetch('components/header.html')
+            .then(res => res.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+    </script>
+
+    <section class="about-hero text-center text-white pt-5 pb-4 position-relative" 
+    style="background: url('images/aboutcov.jpg') center center no-repeat; background-size: cover; padding-top: 7rem !important; padding-bottom: 5rem !important;">
+    
+    <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100" 
+         style="background: rgba(0, 0, 0, 0.6); z-index: 0;">
+    </div>
+    
+    <div class="container position-relative" style="z-index: 1;">
+        <h1 class="fw-bold mb-3">نبذة عن هنوصلك</h1>
+        <p class="fs-5 mb-5 opacity-75">نحن نسعى لتغيير مفهوم النقل في مصر من خلال تقديم خدمة نقل آمنة وموثوقة وبأسعار معقولة</p>
+        
+        <div class="row row-cols-2 row-cols-md-4 g-4 stats-row mb-5">
+            <div class="col">
+                <div class="p-3 stat-box">
+                    <h3 class="fw-bold text-success">+100</h3>
+                    <p class="text-light opacity-75">سائق نشط</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 stat-box">
+                    <h3 class="fw-bold text-success">+400K</h3>
+                    <p class="text-light opacity-75">رحلة يومياً</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 stat-box">
+                    <h3 class="fw-bold text-success">+3</h3>
+                    <p class="text-light opacity-75">مدن</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3 stat-box">
+                    <h3 class="fw-bold text-success">+6K</h3>
+                    <p class="text-light opacity-75">مستخدم</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="story-mission-vision py-5">
+        <div class="container text-white">
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="images/aboutpage.jpg" class="img-fluid rounded-4 shadow-lg" alt="فريق عمل هنوصلك">
+                </div>
+                <div class="col-md-6 text-end">
+                    <h2 class="fw-bold text-success mb-3">قصتنا ورؤيتنا</h2>
+                    <p class="fs-6 opacity-75">تأسست هنوصلك في عام 2025 بهدف تقديم حلول نقل للطرود مبتكرة وآمنة في مصر. نحن نؤمن بأن التنقل يجب أن يكون سهلاً وميسورًا للجميع. ونسعى جاهدين لتحقيق ذلك من خلال تطبيقنا المتطور.</p>
+                    <p class="fs-6 opacity-75">بدأنا رحلتنا في مبادرة رواد مصر الرقمية وسرعان ما توسعنا للتشغيل فى مدنًا أخرى في مصر. نحن نعمل على فهم احتياجات السوق لتقديم تجربة نقل ممتازة لاصحاب الطرود والسائقين على حد سواء.</p>
+                    <p class="fs-6 opacity-75">نفتخر بتقديم خدمة تجمع بين النزاهة والأمان والسعر المناسب، مع التركيز على تحسين حياة السائقين من خلال توفير فرص عمل مرنة ومجزية.</p>
+                </div>
+            </div>
+
+            <h2 class="text-center fw-bold mb-5 mt-5 text-success">مهمتنا وقيمنا</h2>
+            <p class="text-center text-light opacity-75 mb-5">نسعى لتحقيق رؤيتنا من خلال مجموعة من القيم والمبادئ التي نوجه عملنا</p>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="p-4 rounded-4 h-100 dark-card text-center">
+                        <i class="fa-solid fa-people-group fa-2x text-success mb-3"></i>
+                        <h5 class="fw-bold text-white mb-2">مهمتنا</h5>
+                        <p class="text-light opacity-75">تمكين الناس من ارسال الطرود فى سهولة وأمان وبأسعار معقولة، مع توفير فرص عمل مجزية للسائقين وتحسين حركة النقل في المدن المصرية.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 rounded-4 h-100 dark-card text-center">
+                        <i class="fa-solid fa-mountain-sun fa-2x text-success mb-3"></i>
+                        <h5 class="fw-bold text-white mb-2">رؤيتنا</h5>
+                        <p class="text-light opacity-75">أن نكون الشركة الرائدة في مجال خدمات توصيل الطرود في مصر والشرق الأوسط، من خلال توفير تجربة نقل سلسة ومتاحة للجميع.</p>
+                    </div>
+                </div>
+                 <div class="col-md-4">
+                    <div class="p-4 rounded-4 h-100 dark-card text-center">
+                        <i class="fa-solid fa-handshake fa-2x text-success mb-3"></i>
+                        <h5 class="fw-bold text-white mb-2">قيمنا</h5>
+                        <p class="text-light opacity-75">نؤمن بالشفافية والنزاهة والالتزام والتركيز على العملاء. نسعى دائما لخدمتك بأمانة ونزاهة إلى أداء عملنا وخدماتنا.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section py-5">
+        <div class="container text-center text-white">
+            <h2 class="fw-bold text-success mb-3">رحلة هنوصلك</h2>
+            <p class="opacity-75 mb-5">تعرف على أهم المحطات في مسيرتنا منذ التأسيس وحتى الآن</p>
+
+            <div class="timeline">
+                
+                <div class="timeline-item timeline-item-left">
+                    <div class="timeline-content dark-card p-4 rounded-4">
+                        <p class="timeline-date"><i class="fa-regular fa-clock me-2"></i>2025</p>
+                        <h5 class="fw-bold text-success mb-2">تأسيس هنوصلك</h5>
+                        <p class="opacity-75">بداية هنوصلك في القاهرة بفريق صغير وحلم كبير لتغيير مفهوم توصيل الطرود في مصر.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item timeline-item-right">
+                    <div class="timeline-content dark-card p-4 rounded-4">
+                         <p class="timeline-date"><i class="fa-regular fa-clock me-2"></i>July</p>
+                        <h5 class="fw-bold text-success mb-2">إطلاق التطبيق</h5>
+                        <p class="opacity-75">تم إطلاق تطبيق هنوصلك في القاهرة وتحقيق أكثر من 1000 رحلة في الشهر الأول.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item timeline-item-left">
+                    <div class="timeline-content dark-card p-4 rounded-4">
+                         <p class="timeline-date"><i class="fa-regular fa-clock me-2"></i>October</p>
+                        <h5 class="fw-bold text-success mb-2">التوسع في المدن</h5>
+                        <p class="opacity-75">توسعت هنوصلك لتشمل الإسكندرية والمنصورة، مع زيادة عدد السائقين إلى 200 سائق.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item timeline-item-right">
+                    <div class="timeline-content dark-card p-4 rounded-4">
+                         <p class="timeline-date"><i class="fa-regular fa-clock me-2"></i>November</p>
+                        <h5 class="fw-bold text-success  mb-2">خطة لتطوير خدمات جديدة</h5>
+                        <p class="opacity-75">العمل على إطلاق خدمات جديدة.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section py-5 text-center text-white">
+        <div class="container">
+            <h2 class="fw-bold text-success mb-3">فريق هنوصلك</h2>
+            <p class="opacity-75 mb-5">تعرف على الفريق الذي يعمل بجد لتقديم أفضل تجربة تنقل لك</p>
+            
+            <div class="row g-4">
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-member-card bg-dark rounded-4 p-4 h-100">
+                        <div class="team-img rounded-circle mb-3 mx-auto" style="background-image: url('images/manp.png');"></div>
+                        <h5 class="fw-bold text-success mb-1">أحمد الشرقاوى</h5>
+                        <p class="text-light opacity-75">مطور </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-member-card bg-dark rounded-4 p-4 h-100">
+                        <div class="team-img rounded-circle mb-3 mx-auto" style="background-image: url('images/manp.png');"></div>
+                        <h5 class="fw-bold text-success mb-1">عبد الله احمد </h5>
+                        <p class="text-light opacity-75">مطور </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-member-card bg-dark rounded-4 p-4 h-100">
+                        <div class="team-img rounded-circle mb-3 mx-auto" style="background-image: url('images/manp.png');"></div>
+                        <h5 class="fw-bold text-success mb-1">على محمد علي</h5>
+                        <p class="text-light opacity-75">مطور </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-member-card bg-dark rounded-4 p-4 h-100">
+                        <div class="team-img rounded-circle mb-3 mx-auto" style="background-image: url('images/manp.png');"></div>
+                        <h5 class="fw-bold text-success mb-1">احمد الرشيدى </h5>
+                        <p class="text-light opacity-75">مطور </p>
+                    </div>
+                </div>
+                <div class="row g-4 justify-content-center">
+            
+            <div class="col-md-6 col-lg-3"> 
+                <div class="team-member-card bg-dark rounded-4 p-4 h-100">
+                    <div class="team-img rounded-circle mb-3 mx-auto" style="background-image: url('images/manp.png');"></div>
+                    <h5 class="fw-bold text-success mb-1">زياد طارق</h5> 
+                    <p class="text-light opacity-75">مطور</p>
+                </div>
+            </div>
+            
+        </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-info py-5">
+        <div class="container">
+            <h2 class="fw-bold text-success text-center mb-3">تواصل معنا</h2>
+            <p class="opacity-75 text-center mb-5 text-white">نحن هنا للإجابة على استفساراتك ومساعدتك في أي وقت</p>
+            
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-md-4 col-lg-3">
+                    <div class="contact-card bg-dark p-4 rounded-4 h-100 text-center">
+                        <i class="fa-solid fa-location-dot fa-2x text-success mb-3"></i>
+                        <h5 class="fw-bold text-white mb-1">العنوان</h5>
+                        <p class="text-light opacity-75 mb-0">دمياط، مصر</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-lg-3">
+                    <div class="contact-card bg-dark p-4 rounded-4 h-100 text-center">
+                        <i class="fa-solid fa-phone fa-2x text-success mb-3"></i>
+                        <h5 class="fw-bold text-white mb-1">الهاتف</h5>
+                        <p class="text-light opacity-75 mb-0">+20 1021698921</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-lg-3">
+                    <div class="contact-card bg-dark p-4 rounded-4 h-100 text-center">
+                        <i class="fa-solid fa-envelope fa-2x text-success mb-3"></i>
+                        <h5 class="fw-bold text-white mb-1">البريد الإلكتروني</h5>
+                        <p class="text-light opacity-75 mb-0">support@Hanwsallak.com</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+    <script>
+        fetch('components/footer.html')
+            .then(res => res.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

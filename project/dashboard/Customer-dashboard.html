@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>لوحة العميل - Hanwsallak</title>
+
+  <style>
+    :root {
+      --bg:#f3f4f6;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --success:#16a34a;
+      --danger:#ef4444;
+      --glass: rgba(0,0,0,0.04);
+      --radius:12px;
+      --shadow: 0 6px 18px rgba(0,0,0,0.06);
+      --navy:#0f172a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg, var(--bg) 0%, #eef2ff 100%);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 16px;
+    }
+
+    header {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo {
+      width: 44px; height: 44px; border-radius: 8px;
+      background: linear-gradient(135deg,#60a5fa,#3b82f6);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.2rem;
+    }
+
+    .btn { border: 0; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .btn-outline { background: transparent; border: 1px solid rgba(15,23,42,0.1); }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary[data-action="confirm"] { background: var(--success); }
+    .btn-primary[data-action="confirm"]:hover { background: #15803d; }
+    .btn-logout { background: var(--danger); color: white; }
+    .btn-logout:hover { background: #c53030; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .tabs { display: flex; gap: 8px; margin-bottom: 10px; }
+    .tab {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .tab.active { background: linear-gradient(90deg,#eef2ff,#fff); border-color: #e6f0ff; }
+
+    .order {
+      background: linear-gradient(180deg,#ffffff,#fbfdff);
+      border-radius: 10px;
+      border: 1px solid rgba(15,23,42,0.05);
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .order-row { display: flex; justify-content: space-between; align-items: center; }
+    .small { font-size: 0.9rem; color: var(--muted); }
+    .price { color: var(--success); font-weight: 700; }
+
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(2,6,23,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal {
+      background: var(--card);
+      padding: 16px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: var(--shadow);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px; right: 20px;
+      background: #111827; color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all .25s;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">H</div>
+        <div>
+          <h1 style="margin:0;font-size:1rem;color:var(--accent)">Hanwsallak Customer</h1>
+          <div class="small">لوحة العميل</div>
+        </div>
+      </div>
+
+      <div class="header-actions" style="display:flex;align-items:center;gap:12px;">
+        <div style="text-align:right">
+          <div id="customerName">أحمد محمد</div>
+          <div class="small" id="customerBalance">الرصيد: EGP 350.00</div>
+        </div>
+        <button class="btn btn-logout" id="logoutBtn">خروج</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h3 style="margin:0 0 8px 0">طلباتي</h3>
+          <div class="tabs">
+            <button class="tab active" data-tab="active">قيد التنفيذ</button>
+            <button class="tab" data-tab="completed">تم التوصيل</button>
+            <button class="tab" data-tab="cancelled">الملغاة</button>
+          </div>
+
+          <div class="list" data-content="active"></div>
+          <div class="list" data-content="completed" style="display:none"></div>
+          <div class="list" data-content="cancelled" style="display:none"></div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin:0 0 8px 0">إجراءات سريعة</h3>
+          <button class="btn-outline" id="newOrderBtn">طلب جديد</button>
+          <button class="btn-outline" id="refreshBtn">تحديث البيانات</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- نافذة الطلب الجديد -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="modal">
+      <h2>إنشاء طلب جديد</h2>
+      <div class="field" style="display:flex;flex-direction:column;gap:6px;">
+        <label>من (العنوان)</label>
+        <input type="text" id="fromInput" placeholder="مثلاً: القاهرة - مدينة نصر" />
+        <label>إلى (العنوان)</label>
+        <input type="text" id="toInput" placeholder="مثلاً: الجيزة - المهندسين" />
+        <label>الوزن بالكيلوغرام</label>
+        <input type="number" id="weightInput" placeholder="مثلاً: 5" />
+        <label>وصف الطرد</label>
+        <textarea id="descInput" rows="2" placeholder="مثلاً: مستندات أو أجهزة إلكترونية"></textarea>
+      </div>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+        <button class="btn-outline" id="modalCancel">إلغاء</button>
+        <button class="btn-primary" data-action="confirm" id="confirmOrder">تأكيد الطلب</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">تم</div>
+
+  <script>
+    const customer = {
+      name: "أحمد محمد",
+      balance: 350.00
+    };
+
+    let orders = [
+      { id: 'O1001', from: 'القاهرة - المعادي', to: 'الجيزة - الدقي', weight: 3, price: 90, status: 'active', step: 2 },
+      { id: 'O0999', from: 'القاهرة - التجمع', to: 'الإسكندرية - محطة الرمل', weight: 8, price: 200, status: 'completed', step: 3 },
+    ];
+
+    function $(sel) { return document.querySelector(sel); }
+    function $all(sel) { return document.querySelectorAll(sel); }
+
+    function showToast(text){
+      const t = $('#toast');
+      t.textContent = text;
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'), 2000);
+    }
+
+    function renderOrders(){
+      const sections = ['active','completed','cancelled'];
+      sections.forEach(st => {
+        const container = document.querySelector(`[data-content="${st}"]`);
+        container.innerHTML = '';
+        const filtered = orders.filter(o => o.status === st);
+        if(filtered.length === 0){
+          container.innerHTML = '<div class="small" style="color:var(--muted)">لا توجد طلبات</div>';
+          return;
+        }
+        filtered.forEach(o => {
+          const div = document.createElement('div');
+          div.className = 'order';
+          div.innerHTML = `
+            <div class="order-row">
+              <div><strong>طلب #${o.id}</strong><div class="small">${o.from} → ${o.to}</div></div>
+              <div class="price">EGP ${o.price}</div>
+            </div>
+            <div class="small">الوزن: ${o.weight} كجم</div>
+            ${renderProgress(o.step)}
+          `;
+          container.appendChild(div);
+        });
+      });
+    }
+
+    function renderProgress(step){
+      const steps = ['قيد المراجعة','في الطريق','تم التوصيل'];
+      return `
+        <div style="display:flex;gap:4px;margin-top:8px;">
+          ${steps.map((s,i)=>`
+            <div style="flex:1;padding:6px;border-radius:6px;
+              text-align:center;
+              background:${i<step?'#16a34a':'#e5e7eb'};
+              color:${i<step?'white':'#374151'};">
+              ${s}
+            </div>`).join('')}
+        </div>`;
+    }
+
+    function switchTab(tab){
+      $all('.tab').forEach(b=>b.classList.remove('active'));
+      document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+      $all('[data-content]').forEach(c=>{
+        c.style.display = c.dataset.content===tab ? 'block' : 'none';
+      });
+    }
+
+    document.addEventListener('click', e=>{
+      if(e.target.matches('.tab')){
+        switchTab(e.target.dataset.tab);
+      }
+      if(e.target.id === 'newOrderBtn'){
+        $('#modalBackdrop').style.display='flex';
+      }
+      if(e.target.id === 'modalCancel'){
+        $('#modalBackdrop').style.display='none';
+      }
+      if(e.target.id === 'confirmOrder'){
+        const from = $('#fromInput').value.trim();
+        const to = $('#toInput').value.trim();
+        const w = parseFloat($('#weightInput').value);
+        if(!from || !to || !w){ showToast('يرجى إدخال جميع البيانات'); return; }
+        const id = 'O' + (Math.floor(Math.random()*9000)+1000);
+        orders.unshift({ id, from, to, weight:w, price:w*25, status:'active', step:1 });
+        $('#modalBackdrop').style.display='none';
+        showToast('تم إنشاء الطلب بنجاح');
+        renderOrders();
+      }
+      if(e.target.id === 'refreshBtn'){
+        showToast('تم تحديث البيانات');
+        renderOrders();
+      }
+      if(e.target.id === 'logoutBtn'){
+        showToast('تم تسجيل الخروج');
+        setTimeout(()=>alert('تسجيل الخروج '),800);
+      }
+    });
+
+    function init(){
+      $('#customerName').textContent = customer.name;
+      $('#customerBalance').textContent = `الرصيد: EGP ${customer.balance.toFixed(2)}`;
+      renderOrders();
+    }
+    init();
+  </script>
+</body>
+</html>

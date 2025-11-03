@@ -1,0 +1,101 @@
+body {
+  font-family: 'Tajawal', sans-serif;
+  margin: 0;
+}
+
+/* الخلفية الكاملة */
+.signup-section {
+  min-height: 100vh;
+background: url('../images/siback.png') center center/cover no-repeat fixed;
+}
+
+
+
+/* طبقة شفافة فوق الخلفية   */
+.signup-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3px);
+  z-index: -1;
+}
+
+.signup-card {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* الجانب الأخضر */
+.character-side {
+  background: linear-gradient(180deg, #20c63a 0%, #19972e 100%);
+  color: #fff;
+}
+
+.character-img {
+  width: 70%;
+  max-width: 220px;
+  filter: drop-shadow(0 8px 10px rgba(0,0,0,0.25));
+  animation: wave 3s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+@keyframes wave {
+  0%,100% { transform: rotate(0deg); }
+  30% { transform: rotate(-3deg); }
+  60% { transform: rotate(3deg); }
+}
+
+/* أزرار اختيار الدور */
+.role-btn {
+  background-color: #e8f9ec;
+  border: 2px solid #20c63a;
+  color: #20c63a;
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.role-btn.active {
+  background-color: #20c63a;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(32,198,58,0.3);
+}
+
+.role-btn:hover {
+  background-color: #1ba831;
+  color: #fff;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #20c63a;
+  box-shadow: 0 0 0 0.15rem rgba(32,198,58,0.15);
+}
+
+/* الزر الرئيسي */
+.btn-success {
+  background-color: #20c63a;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn-success:hover {
+  background-color: #1ba831;
+  transform: scale(1.03);
+}
+
+@media (max-width: 767px) {
+  .character-side { padding: 1.5rem; }
+  .character-img { width: 60%; }
+}
+/*جعل النص على اليمين*/
+input, select, textarea {
+    text-align: right;
+}
+
+
+input::placeholder, select::placeholder, textarea::placeholder {
+    text-align: right;
+    direction: rtl; 
+}
