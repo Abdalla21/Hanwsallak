@@ -7,27 +7,73 @@ namespace Hanwsallak.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[Action]")]
-    public class AuthenticationController(UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> _signInManager,
-        IConfiguration _config) : Controller
+    public class AuthenticationController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> _signInManager, IConfiguration _config,
+                                    IEmailService emailSender) : ControllerBase
     {
+
         // Ali Makled
         [HttpPost(Name = "Register")]
-        public IActionResult Register(RegisterDto register)
+         public async Task<ActionResult<ApplicationResult<UserDto>>> Register(RegisterDto model)
         {
-            // Return bad request if the registeration failed
-            // Create email and send it to the user to confirm his email
+            if (model.Password != model.ConfirmPassword)
+                return ApiResponseStatus.BadRequest<UserDto>(Errors.ValidationError(ErrorConstants.PASSWORDMISMATCH, ErrorConstants.PASSWORDMISMATCHCODE));
 
-            return Ok();
+            if (model.Email is null)
+                return ApiResponseStatus.BadRequest<UserDto>(Errors.ValidationError());
+
+            bool isPhoneValid = Regex.IsMatch(model.PhoneNumber, RegexConstants.EgyptianPhoneNumberPattern, RegexOptions.IgnoreCase);
+            if (!isPhoneValid)
+                return ApiResponseStatus.BadRequest<UserDto>(Errors.ValidationError(ErrorConstants.PHONENUMBERERROR, ErrorConstants.PHONENUMBERERRORCODE));
+
+            model.Email = model.Email.ToLower();
+            var user = new ApplicationUser { FullName = model.FullName, UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
+            var result = await userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
+            {
+                IdentityError? error = result.Errors.FirstOrDefault();
+                if (error is not null)
+                    return ApiResponseStatus.BadRequest<UserDto>(Errors.ValidationError(error.Description, error.Code));
+                else
+                    return ApiResponseStatus.BadRequest<UserDto>(Errors.ValidationError());
+            }
+
+            string token = ShortEmailTokenProvider.GenerateShortToken();
+
+            string emailBody = EmailConstants.GetConfirmationEmailBody(token);
+
+            await userManager.SetAuthenticationTokenAsync(user, "Vorder", "EmailConfirmation", token);
+
+            EmailMessage emailMessage = new EmailMessage(EmailConstants.ConfirmationSubject
+                , emailBody
+                , model.Email);
+
+            await emailSender.SendEmail(emailMessage, EmailConstants.ConfirmationSubject);
+
+            return ApiResponseStatus.Ok<UserDto>(user.Adapt<UserDto>());
         }
 
         // Ali Makled
         [HttpPost(Name = "ConfirmEmail")]
-        public IActionResult ConfirmEmail(ConfirmEmailDto confirmEmail)
+                public async Task<ActionResult<ApplicationResult<string>>> ConfirmEmail(ConfirmEmailModel confirmEmailModel)
         {
-            // Validate using the dto and confirm the email
-            return Ok();
+            var user = await userManager.FindByIdAsync(confirmEmailModel.UserID.ToString());
+            if (user == null) return ApiResponseStatus.NotFound<string>(Errors.NotFound(ErrorConstants.USERNOTFOUND, ErrorConstants.USERNOTFOUNDCODE));
+
+            var storedToken = await userManager.GetAuthenticationTokenAsync(user, "Vorder", "EmailConfirmation");
+
+            if (storedToken == confirmEmailModel.ConfirmationToken)
+            {
+                user.EmailConfirmed = true;
+                await userManager.UpdateAsync(user);
+                await userManager.RemoveAuthenticationTokenAsync(user, "Vorder", "EmailConfirmation");
+            }
+            else
+                return ApiResponseStatus.NotFound<string>(Errors.ValidationError(ErrorConstants.EMAILCONFIRMATIONFAILED, ErrorConstants.EMAILCONFIRMATIONFAILEDCODE));
+
+            return ApiResponseStatus.Ok<string>("Email confirmed! You can now log in.");
         }
+
 
         // Ahmed Rashedy
         [HttpPost(Name = "GoogleLogin")]
@@ -118,25 +164,86 @@ namespace Hanwsallak.API.Controllers
         
         // Ali Makled
         [HttpPost(Name = "ForgotPassword")]
-        public IActionResult ForgotPassword(string Email)
+          public async Task<ActionResult<ApplicationResult<string>>> ForgotPassword(string Email)
         {
-            // Generate a reset token and send it to the user's email
-            return Ok();
+            ApplicationUser? user = await userManager.FindByEmailAsync(Email.ToLower());
+            if (user is null)
+                return ApiResponseStatus.NotFound<string>(Errors.NotFound(ErrorConstants.INVALIDEMAIL, ErrorConstants.INVALIDEMAILCODE));
+            
+            string token = ShortEmailTokenProvider.GenerateShortToken();
+
+            string emailBody = EmailConstants.GetResetPasswordBody(token);
+
+            await userManager.SetAuthenticationTokenAsync(user, "Vorder", "ResetPassword", token);
+
+            EmailMessage emailMessage = new EmailMessage(EmailConstants.ResetPasswordSubject
+                , emailBody
+                , Email.ToLower());
+
+            await emailSender.SendEmail(emailMessage, EmailConstants.ResetPasswordSubject);
+
+            return ApiResponseStatus.Ok<string>("Password reset token sent to your email.");
         }
+
 
         // Ali Makled
         [HttpPost(Name = "ResetPassword")]
-        public IActionResult ResetPassword(ResetPasswordDto resetPassword)
+   public async Task<ActionResult<ApplicationResult<string>>> ResetPassword(ResetPasswordModel resetPassword)
         {
-            // Validate the reset token and reset the password
-            return Ok();
+            ApplicationUser? user = await userManager.FindByEmailAsync(resetPassword.Email.ToLower());
+            if (user is null)
+                return ApiResponseStatus.NotFound<string>(Errors.NotFound(ErrorConstants.INVALIDEMAIL, ErrorConstants.INVALIDEMAILCODE));
+            
+
+            var storedToken = await userManager.GetAuthenticationTokenAsync(user, "Vorder", "ResetPassword");
+
+            if (storedToken != resetPassword.ResetToken)
+                return ApiResponseStatus.BadRequest<string>(Errors.ValidationError());
+            
+            foreach (var validator in userManager.PasswordValidators)
+            {
+                var validationResult = await validator.ValidateAsync(userManager, user, resetPassword.NewPassword);
+                if (!validationResult.Succeeded)
+                {
+                    var error = validationResult.Errors.FirstOrDefault();
+                    if (error is not null)
+                        return ApiResponseStatus.BadRequest<string>(Errors.ValidationError(error.Description, error.Code));
+                    else
+                        return ApiResponseStatus.BadRequest<string>(Errors.ValidationError());
+                }
+            }
+            await userManager.RemovePasswordAsync(user);
+            await userManager.AddPasswordAsync(user, resetPassword.NewPassword);
+
+            await userManager.RemoveAuthenticationTokenAsync(user, "Vorder", "ResetPassword");
+
+            return ApiResponseStatus.Ok<string>("Password has been reset successfully.");
         }
 
         // Ali Makled
         [HttpPost(Name = "ResendConfirmationEmail")]
-        public IActionResult ResendConfirmationEmail(string Email)
+        public async Task<ActionResult<ApplicationResult<string>>> ResendConfirmationEmail(string Email)
         {
-            return Ok();
+            ApplicationUser? user = await userManager.FindByEmailAsync(Email.ToLower());
+            if (user is null)
+                return ApiResponseStatus.NotFound<string>(Errors.NotFound(ErrorConstants.INVALIDEMAIL, ErrorConstants.INVALIDEMAILCODE));
+
+            if (user.EmailConfirmed)
+                return ApiResponseStatus.BadRequest<string>("Email is already confirmed.");
+
+            string token = ShortEmailTokenProvider.GenerateShortToken();
+
+            string emailBody = EmailConstants.GetConfirmationEmailBody(token);
+
+            await userManager.SetAuthenticationTokenAsync(user, "Vorder", "EmailConfirmation", token);
+
+            EmailMessage emailMessage = new EmailMessage(EmailConstants.ConfirmationSubject
+                , emailBody
+                , Email);
+
+            await emailSender.SendEmail(emailMessage, EmailConstants.ConfirmationSubject);
+
+            return ApiResponseStatus.Ok<string>("Confirmation Email Sent Successfully.");
         }
     }
 }
