@@ -1,0 +1,98 @@
+body {
+  font-family: "Segoe UI", Tahoma, Arial, "Noto Sans", sans-serif;
+  background: linear-gradient(180deg, #f7fbf7 0%, #f1f7f3 100%);
+  min-height: 100vh;
+}
+
+.signup-card {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.character-col {
+  background: linear-gradient(180deg, #f6fff8 0%, #ebffef 100%);
+}
+
+.character-img.signup {
+  max-width: 260px;
+  width: 70%;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.15));
+  animation: waveHand 3s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+@keyframes waveHand {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-4deg);
+  }
+  60% {
+    transform: rotate(4deg);
+  }
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(34, 197, 94, 0.15);
+  border-color: #20c63a;
+}
+
+.btn-success {
+  background-color: #20c63a;
+  border-color: #1da330;
+}
+.btn-success:hover {
+  background-color: #1aa62d;
+  border-color: #178a25;
+}
+
+.form-col h2 {
+  animation: fadeInDown 0.8s ease;
+}
+.form-col p {
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-label,
+.form-control,
+.btn {
+  direction: rtl;
+}
+
+.small {
+  font-size: 0.85rem;
+}
+
+@media (max-width: 767px) {
+  .character-img.signup {
+    max-width: 180px;
+    width: 50%;
+  }
+  .character-col {
+    padding: 1.25rem !important;
+  }
+}

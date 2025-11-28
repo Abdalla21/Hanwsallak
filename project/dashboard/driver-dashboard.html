@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Driver Dashboard </title>
+  <style>
+    :root{
+      --bg:#f3f4f6;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --success:#16a34a;
+      --danger:#ef4444;
+      --glass: rgba(0,0,0,0.04);
+      --radius:12px;
+      --shadow: 0 6px 18px rgba(0,0,0,0.06);
+      --navy:#0f172a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg) 0%, #eef2ff 100%);
+      color: #0b1220;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* layout */
+    .container{
+      max-width:1200px;
+      margin:24px auto;
+      padding:16px;
+    }
+    header{
+      background: var(--card);
+      border-radius: var(--radius);
+      padding:14px 18px;
+      box-shadow: var(--shadow);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo{
+      width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#60a5fa,#3b82f6);
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
+      box-shadow: 0 6px 15px rgba(59,130,246,0.18);
+    }
+    header h1{margin:0;font-size:1rem;color:var(--accent)}
+    .header-actions{display:flex;align-items:center;gap:12px}
+    .btn{
+      background:transparent;border:0;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:600;
+    }
+    .btn-ghost{color:var(--navy)}
+    .btn-icon{width:40px;height:40px;border-radius:10px;background:var(--glass);display:inline-flex;align-items:center;justify-content:center}
+    .btn-logout {
+  background-color: #e63946; /* 🔴 لون أحمر جميل */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+    .btn-logout:hover {
+  background-color: #c53030; 
+}
+/* الزر الأخضر (قبول الطلب) */
+  .btn-primary[data-action="accept"] {
+  background-color: #16a34a; /*  أخضر */
+  color: white;
+}
+
+  .btn-primary[data-action="accept"]:hover {
+  background-color: #15803d; /* أخضر أغمق عند التمرير */
+}
+    /* top area */
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:16px;
+      margin-top:18px;
+    }
+
+    /* left column */
+    .left{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      gap:12px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:12px;
+      box-shadow: var(--shadow);
+    }
+    .card h3{margin:0;color:var(--muted);font-size:0.85rem}
+    .card .value{font-size:1.25rem;font-weight:700;margin-top:6px;color:#0f172a}
+
+    /* tabs */
+    .tabs{
+      background:transparent;
+      display:flex;
+      gap:8px;margin-bottom:6px;
+    }
+    .tab{
+      padding:8px 12px;border-radius:10px;background:transparent;border:1px solid transparent;cursor:pointer;font-weight:600;
+    }
+    .tab.active{background:linear-gradient(90deg,#eef2ff,#fff);border-color:#e6f0ff}
+
+    .list{
+      display:grid;
+      gap:12px;
+    }
+    .order{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:12px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#fbfdff);
+      border:1px solid rgba(15,23,42,0.03);
+    }
+    .order-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .small{font-size:0.9rem;color:var(--muted)}
+    .muted{color:var(--muted)}
+    .price{color:var(--success);font-weight:700}
+    .badges{display:flex;gap:6px;align-items:center}
+    .badge{padding:6px 8px;border-radius:8px;font-size:0.78rem;color:#08203a;background:rgba(14,165,233,0.07)}
+
+    .order-meta{display:flex;gap:12px;flex-wrap:wrap}
+    .order-actions{display:flex;gap:8px}
+
+    .btn-primary{
+      background:var(--accent);color:white;border:0;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:700;
+    }
+    .btn-outline{
+      border:1px solid rgba(15,23,42,0.06);background:transparent;padding:8px 12px;border-radius:10px;cursor:pointer;
+    }
+
+    /* right column */
+    .right{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .profile{
+      display:flex;
+      gap:12px;align-items:center;
+    }
+    .avatar{width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,#34d399,#10b981);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.25rem}
+    .profile-info{flex:1}
+    .small-muted{font-size:0.85rem;color:var(--muted)}
+
+    /* trips */
+    .trip{
+      padding:10px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid rgba(15,23,42,0.03);
+    }
+
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.5);display:none;align-items:center;justify-content:center;padding:20px;}
+    .modal{background:var(--card);padding:16px;border-radius:12px;max-width:720px;width:100%;box-shadow:var(--shadow)}
+    .modal.open{display:block}
+    .modal h2{margin:0 0 8px 0}
+    .field{display:flex;flex-direction:column;gap:6px}
+    input[type="text"], input[type="number"], select, textarea{
+      padding:10px;border-radius:8px;border:1px solid #e6edf7;background:#fbfdff;font-size:0.95rem;
+    }
+
+    /* toast */
+    .toast{
+      position:fixed;right:20px;bottom:24px;background:#111827;color:white;padding:10px 14px;border-radius:10px;opacity:0;transform:translateY(8px);transition:all .25s;
+    }
+    .toast.show{opacity:1;transform:translateY(0)}
+
+    /* responsive */
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr; padding-bottom:80px}
+      .right{order:-1}
+    }
+
+  </style>
+</head>
+<body dir="rtl">
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">H</div>
+        <div>
+          <h1>Hanwsallak Driver</h1>
+          <div class="small-muted">لوحة السائق</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="profileBtn">الملف الشخصي</button>
+        <div style="text-align:right">
+          <div id="driverName">عبد الله احمد </div>
+          <div class="small-muted" id="driverBalance">الرصيد: EGP 0.00</div>
+        </div>
+<button class="btn btn-logout" id="logoutBtn">خروج</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- LEFT -->
+      <div class="left">
+        <div class="stats-grid">
+          <div class="card">
+            <h3>أرباح اليوم</h3>
+            <div class="value" id="todayEarnings">EGP 0.00</div>
+          </div>
+          <div class="card">
+            <h3>إجمالي الأرباح</h3>
+            <div class="value" id="totalEarnings">EGP 0.00</div>
+          </div>
+          <div class="card">
+            <h3>الطلبات النشطة</h3>
+            <div class="value" id="activeOrders">0</div>
+          </div>
+          <div class="card">
+            <h3>المكتملة اليوم</h3>
+            <div class="value" id="completedToday">0</div>
+          </div>
+          <div class="card">
+            <h3>التقييم</h3>
+            <div class="value" id="driverRating">N/A</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <h3 style="margin:0">الطلبات</h3>
+            <div class="tabs" id="tabs">
+              <button class="tab active" data-tab="available">Available</button>
+              <button class="tab" data-tab="my-orders">My Orders</button>
+              <button class="tab" data-tab="my-trips">My Trips</button>
+            </div>
+          </div>
+
+          <div id="tab-content" style="margin-top:12px;">
+            <!-- Available -->
+            <div class="list" data-content="available"></div>
+
+            <!-- My Orders -->
+            <div class="list" data-content="my-orders" style="display:none"></div>
+
+            <!-- My Trips -->
+            <div class="list" data-content="my-trips" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <aside class="right">
+        <div class="card profile">
+          <div class="avatar" id="avatar">M</div>
+          <div class="profile-info">
+            <div id="profileName" style="font-weight:700">محمد علي</div>
+            <div class="small-muted" id="profileVehicle">Van - Plate: ABC-123</div>
+            <div style="margin-top:8px;display:flex;gap:8px">
+              <div class="badge">Max Load: <strong id="maxLoad">1200</strong> kg</div>
+              <div class="badge">Slots: <strong id="maxPackages">20</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 8px 0">الرحلات الخاصة بي</h3>
+          <div id="tripsList">
+            <!-- trips -->
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 8px 0">إجراءات سريعة</h3>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button class="btn-outline" id="createTripBtn">إنشاء رحلة جديدة</button>
+            <button class="btn-outline" id="refreshBtn">تحديث البيانات</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- modal backdrop -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true" id="modal">
+      <h2 id="modalTitle">تفاصيل الطلب</h2>
+      <p class="muted" id="modalSub">مراجعة الطلب قبل قبوله</p>
+      <div id="modalBody" style="margin-top:12px"></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button class="btn-outline" id="modalCancel">إغلاق</button>
+        <button class="btn-primary" id="modalPrimary">Accept Order</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">تم</div>
+
+  <script>
+    /************** Sample Data **************/
+    const driver = {
+      id: 'd1',
+      name: 'محمد علي',
+      rating: 4.7,
+      balance: 521.75,
+      vehicle: {
+        type: 'Van',
+        plateNumber: 'ABC-123',
+        maxLoadWeight: 1200,
+        maxPackages: 20
+      }
+    };
+
+    // available orders (sample)
+    let availableOrders = [
+      {
+        id: 'O1001',
+        scheduledDate: new Date(),
+        pickupLocation: 'Cairo, Nasr City',
+        deliveryLocation: 'Cairo, Maadi',
+        packageWeight: 12.5,
+        packageSize: 'medium',
+        packageDescription: 'Electronic accessories',
+        insurance: true,
+        fragile: false,
+        customerName: 'أحمد',
+        customerPhone: '+20 1XXXXXXXXX',
+        price: 180,
+        status: 'pending'
+      },
+      {
+        id: 'O1002',
+        scheduledDate: new Date(Date.now() + 86400000),
+        pickupLocation: 'Giza, Dokki',
+        deliveryLocation: 'Cairo, Heliopolis',
+        packageWeight: 4,
+        packageSize: 'small',
+        packageDescription: 'Documents',
+        insurance: false,
+        fragile: false,
+        customerName: 'سارة',
+        customerPhone: '+20 1YYYYYYYYY',
+        price: 90,
+        status: 'pending'
+      }
+    ];
+
+    // my orders (initially empty)
+    let myOrders = [
+      {
+        id: 'O0990',
+        scheduledDate: new Date(Date.now() - 86400000),
+        pickupLocation: 'Alexandria, Raml',
+        deliveryLocation: 'Cairo, Nasr City',
+        packageWeight: 6,
+        packageSize: 'small',
+        packageDescription: 'Clothes',
+        insurance: false,
+        fragile: false,
+        customerName: 'مروة',
+        customerPhone: '+20 1ZZZZZZZZZ',
+        price: 140,
+        status: 'delivered',
+        deliveredAt: new Date()
+      }
+    ];
+
+    let myTrips = [
+      { id: 'T001', from: 'Cairo', to: 'Alexandria', distance: 220, departureDate: new Date(Date.now()+2*86400000), departureTime:'08:00', estimatedArrival:'12:30', availableCapacity: 900, availablePackages: 12, maxPackages:20, basePrice: 200, pricePerKg: 1.5, status: 'available' }
+    ];
+
+    /************** Helpers **************/
+    function $(sel){ return document.querySelector(sel) }
+    function $all(sel){ return Array.from(document.querySelectorAll(sel)) }
+
+    function formatDate(d){
+      if(!d) return '-';
+      const dt = new Date(d);
+      return dt.toLocaleDateString();
+    }
+
+    function showToast(text){
+      const t = $('#toast');
+      t.textContent = text;
+      t.classList.add('show');
+      setTimeout(()=> t.classList.remove('show'), 2200);
+    }
+
+    /************** Render functions **************/
+    function renderProfile(){
+      $('#driverName').textContent = driver.name;
+      $('#profileName').textContent = driver.name;
+      $('#avatar').textContent = driver.name.split(' ')[0][0] || 'D';
+      $('#driverBalance').textContent = `الرصيد: EGP ${driver.balance.toFixed(2)}`;
+      $('#driverRating').textContent = driver.rating ? driver.rating.toFixed(1) : 'N/A';
+      $('#maxLoad').textContent = driver.vehicle.maxLoadWeight;
+      $('#maxPackages').textContent = driver.vehicle.maxPackages;
+      $('#profileVehicle').textContent = `${driver.vehicle.type} - Plate: ${driver.vehicle.plateNumber}`;
+    }
+
+    function calcEarnings(){
+      const delivered = myOrders.filter(o => o.status === 'delivered');
+      const total = delivered.reduce((s,o)=> s + (o.price * 0.7), 0);
+      const today = delivered.filter(o => {
+        if(!o.deliveredAt) return false;
+        const a = new Date(o.deliveredAt);
+        const now = new Date();
+        return a.toDateString() === now.toDateString();
+      }).reduce((s,o)=> s + (o.price * 0.7),0);
+
+      $('#totalEarnings').textContent = `EGP ${total.toFixed(2)}`;
+      $('#todayEarnings').textContent = `EGP ${today.toFixed(2)}`;
+      $('#activeOrders').textContent = myOrders.filter(o => ['accepted','in-transit'].includes(o.status)).length;
+      $('#completedToday').textContent = myOrders.filter(o => o.status==='delivered' && o.deliveredAt && new Date(o.deliveredAt).toDateString()===new Date().toDateString()).length;
+    }
+
+    function renderAvailable(){
+      const root = document.querySelector('[data-content="available"]');
+      root.innerHTML = '';
+      if(availableOrders.length === 0){
+        const c = document.createElement('div');
+        c.className='muted';
+        c.textContent = 'لا توجد طلبات متاحة حالياً';
+        root.appendChild(c);
+        return;
+      }
+      availableOrders.forEach(order => {
+        const el = document.createElement('div');
+        el.className = 'order';
+        el.innerHTML = `
+          <div class="order-row">
+            <div>
+              <div style="font-weight:700">Order #${order.id}</div>
+              <div class="small muted">${formatDate(order.scheduledDate)}</div>
+            </div>
+            <div style="text-align:right">
+              <div class="price">+EGP ${(order.price*0.7).toFixed(2)}</div>
+              <div class="small muted">Your earnings</div>
+            </div>
+          </div>
+          <div class="order-meta">
+            <div class="small"><strong>Pickup:</strong> ${order.pickupLocation}</div>
+            <div class="small"><strong>Delivery:</strong> ${order.deliveryLocation}</div>
+            <div class="small"><strong>Weight:</strong> ${order.packageWeight} kg</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="badges">
+              ${order.insurance?'<span class="badge">Insured</span>':''}
+              ${order.fragile?'<span class="badge">Fragile</span>':''}
+            </div>
+            <div class="order-actions">
+              <button class="btn-outline" data-id="${order.id}" data-action="view">عرض</button>
+              <button class="btn-primary" data-id="${order.id}" data-action="accept">قبول</button>
+            </div>
+          </div>
+        `;
+        root.appendChild(el);
+      });
+    }
+
+    function renderMyOrders(){
+      const root = document.querySelector('[data-content="my-orders"]');
+      root.innerHTML = '';
+      if(myOrders.length === 0){
+        const c = document.createElement('div');
+        c.className='muted';
+        c.textContent = 'لم تقبل أي طلبات بعد';
+        root.appendChild(c);
+        return;
+      }
+      myOrders.forEach(order => {
+        const el = document.createElement('div');
+        el.className = 'order';
+        el.innerHTML = `
+          <div class="order-row">
+            <div>
+              <div style="font-weight:700">Order #${order.id}</div>
+              <div class="small muted">Scheduled: ${formatDate(order.scheduledDate)}</div>
+            </div>
+            <div style="text-align:right">
+              <div class="price">+EGP ${(order.price*0.7).toFixed(2)}</div>
+              <div class="small muted">${order.packageWeight} kg</div>
+            </div>
+          </div>
+          <div class="order-meta">
+            <div class="small"><strong>From:</strong> ${order.pickupLocation}</div>
+            <div class="small"><strong>To:</strong> ${order.deliveryLocation}</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="small-muted">العميل: ${order.customerName} • ${order.customerPhone || ''}</div>
+            <div class="order-actions">
+              ${order.status === 'accepted' ? `<button class="btn-primary" data-id="${order.id}" data-action="start">Start Delivery</button>` : ''}
+              ${order.status === 'in-transit' ? `<button class="btn-primary" data-id="${order.id}" data-action="mark-delivered">Mark Delivered</button>` : ''}
+              ${order.status === 'delivered' ? `<div class="badge" style="background:rgba(16,185,129,0.08);">Delivered</div>` : ''}
+            </div>
+          </div>
+        `;
+        root.appendChild(el);
+      });
+    }
+
+    function renderTrips(){
+      const root = $('#tripsList');
+      root.innerHTML = '';
+      if(myTrips.length === 0){
+        root.innerHTML = '<div class="muted">لا توجد رحلات حالياً</div>';
+        return;
+      }
+      myTrips.forEach(trip => {
+        const el = document.createElement('div');
+        el.className = 'trip';
+        el.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><strong>Trip #${trip.id}</strong> • ${trip.from} → ${trip.to}</div>
+            <div class="small-muted">${trip.distance} km</div>
+          </div>
+          <div class="small-muted" style="margin-top:8px">Departure: ${formatDate(trip.departureDate)} • ${trip.departureTime}</div>
+        `;
+        root.appendChild(el);
+      });
+    }
+
+    /************** Events & Actions **************/
+    function openModal(title, subtitle, bodyHTML, primaryLabel='Accept Order', primaryHandler=null){
+      $('#modalTitle').textContent = title;
+      $('#modalSub').textContent = subtitle || '';
+      $('#modalBody').innerHTML = bodyHTML || '';
+      $('#modalPrimary').textContent = primaryLabel;
+      $('#modalBackdrop').style.display = 'flex';
+      $('#modalPrimary').onclick = ()=>{
+        if(typeof primaryHandler === 'function') primaryHandler();
+        closeModal();
+      };
+      $('#modalCancel').onclick = closeModal;
+    }
+    function closeModal(){ $('#modalBackdrop').style.display = 'none'; }
+
+    function acceptOrder(orderId){
+      const idx = availableOrders.findIndex(o=>o.id===orderId);
+      if(idx === -1){ showToast('الطلب غير موجود'); return; }
+      const order = availableOrders.splice(idx,1)[0];
+      order.status = 'accepted';
+      myOrders.unshift(order);
+      showToast('تم قبول الطلب');
+      rerender();
+    }
+
+    function startDelivery(orderId){
+      const o = myOrders.find(x=>x.id===orderId);
+      if(!o){ showToast('الطلب غير موجود'); return; }
+      o.status = 'in-transit';
+      showToast('تم بدء التوصيل');
+      rerender();
+    }
+
+    function markDelivered(orderId){
+      const o = myOrders.find(x=>x.id===orderId);
+      if(!o){ showToast('الطلب غير موجود'); return; }
+      o.status = 'delivered';
+      o.deliveredAt = new Date();
+      // driver earns 70%
+      driver.balance += o.price * 0.7;
+      showToast('تم تسليم الطلب. تم تحديث الرصيد');
+      renderProfile();
+      rerender();
+    }
+
+    function viewOrder(orderId){
+      const all = [...availableOrders, ...myOrders];
+      const o = all.find(x=>x.id===orderId);
+      if(!o){ showToast('الطلب غير موجود'); return; }
+      const body = `
+        <div class="small-muted"><strong>Order ID:</strong> ${o.id}</div>
+        <div style="margin-top:8px"><strong>Pickup:</strong> ${o.pickupLocation}</div>
+        <div><strong>Delivery:</strong> ${o.deliveryLocation}</div>
+        <div style="margin-top:6px" class="small"><strong>Weight:</strong> ${o.packageWeight} kg • Size: ${o.packageSize}</div>
+        <div style="margin-top:6px">${o.packageDescription}</div>
+        <div style="margin-top:8px" class="price"><strong>Your Earnings:</strong> EGP ${(o.price*0.7).toFixed(2)}</div>
+      `;
+      openModal('تفاصيل الطلب', `Order #${o.id}`, body, o.status === 'pending' ? 'Accept Order' : 'Close', ()=>{
+        if(o.status === 'pending') acceptOrder(o.id);
+      });
+    }
+
+    function createTrip(){
+      const id = `T${String(myTrips.length + 2).padStart(3, '0')}`;
+      const trip = {
+        id,
+        from: 'Cairo',
+        to: 'Luxor',
+        distance: 500,
+        departureDate: new Date(Date.now() + 3*86400000),
+        departureTime: '07:00',
+        estimatedArrival: '17:30',
+        availableCapacity: 800,
+        availablePackages: 6,
+        maxPackages: 20,
+        basePrice: 500,
+        pricePerKg: 2.0,
+        status: 'available'
+      };
+      myTrips.unshift(trip);
+      showToast('تم إنشاء رحلة جديدة');
+      renderTrips();
+    }
+
+    function rerender(){
+      renderAvailable();
+      renderMyOrders();
+      renderTrips();
+      calcEarnings();
+    }
+
+    /************** UI interactions (delegation) **************/
+    document.addEventListener('click', (e)=>{
+      const t = e.target;
+      // tabs
+      if(t.matches('.tab')){
+        $all('.tab').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        const tab = t.dataset.tab;
+        $all('[data-content]').forEach(c=>{
+          c.style.display = c.dataset.content === tab ? 'grid' : 'none';
+        });
+      }
+
+      // action buttons
+      if(t.matches('button[data-action]')){
+        const id = t.dataset.id;
+        const action = t.dataset.action;
+        if(action === 'accept') acceptOrder(id);
+        else if(action === 'view') viewOrder(id);
+        else if(action === 'start') startDelivery(id);
+        else if(action === 'mark-delivered') markDelivered(id);
+      }
+
+      if(t.id === 'createTripBtn'){ createTrip(); }
+      if(t.id === 'refreshBtn'){ rerender(); showToast('تم التحديث'); }
+      if(t.id === 'logoutBtn'){ showToast('تسجيل الخروج...'); setTimeout(()=> alert('تم تسجيل الخروج '), 700); }
+      if(t.id === 'profileBtn'){ alert('فتح الملف '); }
+    });
+
+    // modal backdrop click close
+    $('#modalBackdrop').addEventListener('click', (ev)=>{
+      if(ev.target === $('#modalBackdrop')) closeModal();
+    });
+
+    /************** Init **************/
+    function init(){
+      renderProfile();
+      rerender();
+    }
+    init();
+
+  </script>
+</body>
+</html>

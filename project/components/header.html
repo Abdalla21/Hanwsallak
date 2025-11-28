@@ -1,0 +1,115 @@
+<!-- 🔹 الهيدر المشترك لجميع الصفحات -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Cairo', sans-serif;
+  }
+
+  /* 🔹 الهيدر */
+  .navbar {
+    background-color: #2f3233 !important;
+    transition: all 0.3s ease;
+    height: 80px;
+    z-index: 9999;
+  }
+
+  /* ✅ اللوجو */
+  .navbar-brand img {
+    margin-right: 7.5rem !important;
+    transform: scale(1.3);
+    transform-origin: right center;
+    transition: transform 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-brand img {
+      margin-right: 1rem !important;
+      transform: scale(1);
+    }
+  }
+
+  /* 🔹 الروابط */
+  .navbar-nav .nav-link {
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+
+  .navbar-nav .nav-link i {
+    color: #2ecc71 !important;
+  }
+
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link.active {
+    color: #2ecc71 !important;
+    transform: scale(1.05);
+  }
+
+  .navbar.scrolled {
+    background-color: #1e1e1e !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar .btn-success {
+    font-weight: 600;
+    background-color: #2ecc71;
+    border: none;
+    transition: 0.3s;
+  }
+
+  .navbar .btn-success:hover {
+    background-color: #27ae60 !important;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm py-2">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="images/logo2.png" alt="Hanwsallk" width="150">
+    </a>
+
+    <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+      <ul class="navbar-nav align-items-center gap-lg-3">
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="fa-solid fa-circle-info"></i> نبذة عنا</a></li>
+        <li class="nav-item"><a class="nav-link" href="help-center.html"><i class="fa-solid fa-circle-question"></i> مركز المساعدة</a></li>
+        <li class="nav-item"><a class="nav-link" href="safety.html"><i class="fa-solid fa-shield-halved"></i> الأمان</a></li>
+        <li class="nav-item"><a class="nav-link" href="success-stories.html"><i class="fa-solid fa-star"></i> قصص النجاح</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fa-solid fa-book-open"></i> المدونة</a></li>
+        <li class="nav-item"><a class="nav-link" href="sender.html"><i class="fa-solid fa-user"></i> صاحب الطرد</a></li>
+        <li class="nav-item"><a class="nav-link" href="drivers.html"><i class="fa-solid fa-truck-fast"></i> السائق</a></li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center me-lg-4">
+      <a href="#" class="btn btn-success rounded-pill px-3">
+        <i class="fa-solid fa-download"></i> حمّل التطبيق
+      </a>
+    </div>
+
+    <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // 🔹 تفعيل تأثير التمرير لتغيير لون الهيدر
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
