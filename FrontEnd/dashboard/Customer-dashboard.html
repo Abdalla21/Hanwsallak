@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>لوحة العميل - Hanwsallak</title>
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Dashboard Styles -->
+  <link rel="stylesheet" href="../style/dashboard.css">
+  
+  <style>
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+    
+    .empty-state i {
+      font-size: 3rem;
+      color: var(--green-light);
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div id="header"></div>
+  <script>
+    fetch('../components/header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+        // Re-execute scripts - wait a bit for DOM to be ready
+        setTimeout(() => {
+          const scripts = document.getElementById('header').querySelectorAll('script');
+          scripts.forEach(oldScript => {
+            const newScript = document.createElement('script');
+            Array.from(oldScript.attributes).forEach(attr => {
+              newScript.setAttribute(attr.name, attr.value);
+            });
+            newScript.textContent = oldScript.textContent;
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+          });
+        }, 100);
+      })
+      .catch(err => console.error('خطأ في تحميل الهيدر:', err));
+  </script>
+
+  <div class="dashboard-container">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+      <div class="dashboard-brand">
+        <div class="dashboard-logo">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="dashboard-title">
+          <h1>لوحة العميل</h1>
+          <div class="subtitle">مرحباً بك، <span id="customerName">العميل</span></div>
+        </div>
+      </div>
+      <div class="dashboard-actions">
+        <div style="text-align: right; margin-left: 16px;">
+          <div style="font-weight: 700; color: var(--green);" id="customerBalance">الرصيد: EGP 0.00</div>
+          <div style="font-size: 0.85rem; color: var(--muted);">طلبات نشطة: <span id="activeCount">0</span></div>
+        </div>
+        <button class="btn btn-danger btn-sm" id="logoutBtn">
+          <i class="fa-solid fa-sign-out-alt"></i> خروج
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">الطلبات النشطة</div>
+        <div class="stat-value" id="activeOrders">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">المكتملة</div>
+        <div class="stat-value" id="completedOrders">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">المعلقة</div>
+        <div class="stat-value" id="pendingOrders">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">إجمالي الإنفاق</div>
+        <div class="stat-value" id="totalSpent">EGP 0.00</div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="dashboard-grid">
+      <!-- Left Column -->
+      <div class="left">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">طلباتي</h3>
+            <div class="tabs" id="tabs">
+              <button class="tab active" data-tab="active">
+                <i class="fa-solid fa-clock"></i> قيد التنفيذ
+              </button>
+              <button class="tab" data-tab="completed">
+                <i class="fa-solid fa-check-circle"></i> تم التوصيل
+              </button>
+              <button class="tab" data-tab="pending">
+                <i class="fa-solid fa-hourglass-half"></i> المعلقة
+              </button>
+            </div>
+          </div>
+
+          <div id="tab-content">
+            <!-- Active Orders -->
+            <div class="list" data-content="active"></div>
+
+            <!-- Completed Orders -->
+            <div class="list" data-content="completed" style="display:none"></div>
+
+            <!-- Pending Orders -->
+            <div class="list" data-content="pending" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <aside class="right">
+        <!-- Profile Card -->
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar" id="avatar">ع</div>
+            <div class="profile-info">
+              <h3 id="profileName">العميل</h3>
+              <p id="profileEmail">-</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">إجراءات سريعة</h3>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button class="btn btn-primary" id="newOrderBtn">
+              <i class="fa-solid fa-plus"></i> طلب جديد
+            </button>
+            <button class="btn btn-outline" id="refreshBtn">
+              <i class="fa-solid fa-refresh"></i> تحديث البيانات
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Modal for New Order -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">إنشاء طلب جديد</h3>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+      <form id="newOrderForm">
+        <div class="form-group">
+          <label class="form-label">من (المدينة)</label>
+          <input type="text" class="form-control" id="fromCity" placeholder="مثلاً: القاهرة" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">إلى (المدينة)</label>
+          <input type="text" class="form-control" id="toCity" placeholder="مثلاً: الإسكندرية" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">الوزن (كيلوغرام)</label>
+          <input type="number" class="form-control" id="weight" placeholder="مثلاً: 5" min="0.1" step="0.1" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">وصف الطرد</label>
+          <textarea class="form-control" id="description" rows="3" placeholder="مثلاً: مستندات أو أجهزة إلكترونية"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">السعر المقدم (EGP)</label>
+          <input type="number" class="form-control" id="offeredPrice" placeholder="مثلاً: 100" min="0" step="0.01" required>
+        </div>
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+          <button type="button" class="btn btn-outline" id="modalCancel">إلغاء</button>
+          <button type="submit" class="btn btn-primary">تأكيد الطلب</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="../scripts/api.js"></script>
+  <script src="../scripts/i18n.js"></script>
+  <script>
+    // Check authentication
+    if (!getAuthToken()) {
+      window.location.href = '../login.html';
+    }
+
+    // Load user info
+    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+    if (userInfo.fullName) {
+      document.getElementById('customerName').textContent = userInfo.fullName;
+      document.getElementById('profileName').textContent = userInfo.fullName;
+      document.getElementById('avatar').textContent = userInfo.fullName.charAt(0);
+      document.getElementById('profileEmail').textContent = userInfo.email || '-';
+    }
+
+    // Data
+    const customer = {
+      id: userInfo.id || 'c1',
+      name: userInfo.fullName || 'العميل',
+      balance: 0
+    };
+
+    let orders = [];
+
+    // Helpers
+    function $(sel) { return document.querySelector(sel); }
+    function $all(sel) { return Array.from(document.querySelectorAll(sel)); }
+
+    function formatDate(d) {
+      if (!d) return '-';
+      const dt = new Date(d);
+      return dt.toLocaleDateString('ar-EG');
+    }
+
+    function showToast(text, type = 'success') {
+      const t = $('#toast');
+      t.textContent = text;
+      t.className = `toast ${type} show`;
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // Render functions
+    function renderProfile() {
+      $('#customerName').textContent = customer.name;
+      $('#profileName').textContent = customer.name;
+      $('#avatar').textContent = customer.name.charAt(0) || 'ع';
+      $('#customerBalance').textContent = `الرصيد: EGP ${customer.balance.toFixed(2)}`;
+    }
+
+    function updateStats() {
+      const active = orders.filter(o => ['accepted', 'in-transit'].includes(o.status)).length;
+      const completed = orders.filter(o => o.status === 'delivered').length;
+      const pending = orders.filter(o => o.status === 'pending').length;
+      const totalSpent = orders.filter(o => o.status === 'delivered').reduce((sum, o) => sum + o.price, 0);
+
+      $('#activeOrders').textContent = active;
+      $('#completedOrders').textContent = completed;
+      $('#pendingOrders').textContent = pending;
+      $('#totalSpent').textContent = `EGP ${totalSpent.toFixed(2)}`;
+      $('#activeCount').textContent = active;
+    }
+
+    function renderOrders(status) {
+      const filtered = orders.filter(o => {
+        if (status === 'active') return ['accepted', 'in-transit'].includes(o.status);
+        return o.status === status;
+      });
+
+      const root = document.querySelector(`[data-content="${status}"]`);
+      root.innerHTML = '';
+
+      if (filtered.length === 0) {
+        root.innerHTML = `
+          <div class="empty-state">
+            <i class="fa-solid fa-inbox"></i>
+            <div>لا توجد طلبات ${status === 'active' ? 'نشطة' : status === 'completed' ? 'مكتملة' : 'معلقة'}</div>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(order => {
+        const statusBadge = {
+          'pending': '<span class="badge badge-warning">معلق</span>',
+          'accepted': '<span class="badge badge-success">مقبول</span>',
+          'in-transit': '<span class="badge badge-success">قيد التوصيل</span>',
+          'delivered': '<span class="badge badge-success">تم التسليم</span>',
+          'cancelled': '<span class="badge badge-danger">ملغي</span>'
+        }[order.status] || '';
+
+        const el = document.createElement('div');
+        el.className = 'list-item';
+        el.innerHTML = `
+          <div class="item-row">
+            <div>
+              <div style="font-weight: 700; font-size: 1.1rem; color: var(--green);">طلب #${order.id}</div>
+              <div class="item-label">${formatDate(order.createdAt)}</div>
+            </div>
+            <div style="text-align: left;">
+              <div class="price">EGP ${order.price.toFixed(2)}</div>
+              <div class="item-label">${order.weight} kg</div>
+            </div>
+          </div>
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--green-light);">
+            <div class="item-row">
+              <div class="item-label"><i class="fa-solid fa-map-marker-alt"></i> من:</div>
+              <div class="item-value">${order.fromCity}</div>
+            </div>
+            <div class="item-row">
+              <div class="item-label"><i class="fa-solid fa-map-marker-alt"></i> إلى:</div>
+              <div class="item-value">${order.toCity}</div>
+            </div>
+            ${order.driverName ? `
+            <div class="item-row">
+              <div class="item-label"><i class="fa-solid fa-truck"></i> السائق:</div>
+              <div class="item-value">${order.driverName}</div>
+            </div>
+            ` : ''}
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+            ${statusBadge}
+            ${order.status === 'pending' ? `
+              <button class="btn btn-danger btn-sm" data-id="${order.id}" data-action="cancel">
+                <i class="fa-solid fa-times"></i> إلغاء
+              </button>
+            ` : ''}
+          </div>
+        `;
+        root.appendChild(el);
+      });
+    }
+
+    // Modal functions
+    function openModal() {
+      $('#modalBackdrop').classList.add('show');
+      $('#newOrderForm').reset();
+    }
+
+    function closeModal() {
+      $('#modalBackdrop').classList.remove('show');
+    }
+
+    // API Functions
+    async function createOrder(formData) {
+      try {
+        const shipmentData = {
+          fromCity: formData.fromCity,
+          toCity: formData.toCity,
+          weight: parseFloat(formData.weight),
+          description: formData.description || '',
+          offeredPrice: parseFloat(formData.offeredPrice)
+        };
+
+        await ShipmentAPI.create(shipmentData);
+        showToast('تم إنشاء الطلب بنجاح');
+        closeModal();
+        await loadData();
+      } catch (error) {
+        console.error('Error creating order:', error);
+        showToast('خطأ في إنشاء الطلب', 'error');
+      }
+    }
+
+    async function cancelOrder(orderId) {
+      if (!confirm('هل أنت متأكد من إلغاء هذا الطلب؟')) return;
+      
+      try {
+        await ShipmentAPI.delete(orderId);
+        showToast('تم إلغاء الطلب');
+        await loadData();
+      } catch (error) {
+        console.error('Error cancelling order:', error);
+        showToast('خطأ في إلغاء الطلب', 'error');
+      }
+    }
+
+    async function loadData() {
+      try {
+        const shipments = await ShipmentAPI.getMyShipments();
+        orders = shipments.map(s => ({
+          id: s.id,
+          fromCity: s.fromCity,
+          toCity: s.toCity,
+          weight: s.weight,
+          description: s.description,
+          price: s.offeredPrice,
+          status: s.status.toLowerCase(),
+          createdAt: new Date(s.createdAt),
+          driverName: s.driverName || null
+        }));
+
+        rerender();
+      } catch (error) {
+        console.error('Error loading data:', error);
+        showToast('خطأ في تحميل البيانات', 'error');
+      }
+    }
+
+    function rerender() {
+      renderOrders('active');
+      renderOrders('completed');
+      renderOrders('pending');
+      updateStats();
+    }
+
+    // Event Listeners
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest('button');
+      if (!t) return;
+
+      // Tabs
+      if (t.matches('.tab')) {
+        $all('.tab').forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        const tab = t.dataset.tab;
+        $all('[data-content]').forEach(c => {
+          c.style.display = c.dataset.content === tab ? 'flex' : 'none';
+        });
+      }
+
+      // Action buttons
+      if (t.matches('button[data-action]')) {
+        const id = t.dataset.id;
+        const action = t.dataset.action;
+        if (action === 'cancel') cancelOrder(id);
+      }
+
+      if (t.id === 'newOrderBtn') openModal();
+      if (t.id === 'refreshBtn') { loadData(); showToast('تم التحديث'); }
+      if (t.id === 'logoutBtn') {
+        if (typeof removeAuthToken === 'function') {
+          removeAuthToken();
+        } else {
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('refreshToken');
+          localStorage.removeItem('userInfo');
+        }
+        window.location.href = '../index.html';
+      }
+      if (t.id === 'modalCancel' || t.id === 'modalClose') closeModal();
+    });
+
+    // Form submission
+    $('#newOrderForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = {
+        fromCity: $('#fromCity').value,
+        toCity: $('#toCity').value,
+        weight: $('#weight').value,
+        description: $('#description').value,
+        offeredPrice: $('#offeredPrice').value
+      };
+      await createOrder(formData);
+    });
+
+    // Modal backdrop click
+    $('#modalBackdrop').addEventListener('click', (ev) => {
+      if (ev.target === $('#modalBackdrop')) closeModal();
+    });
+
+    // Initialize
+    async function init() {
+      renderProfile();
+      await loadData();
+    }
+    init();
+  </script>
+</body>
+</html>

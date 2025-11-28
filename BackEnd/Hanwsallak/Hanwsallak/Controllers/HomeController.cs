@@ -1,15 +1,40 @@
-﻿using Hanwsallak.Infrastructure.Data;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hanwsallak.API.Controllers
 {
-    public class HomeController(ApplicationDBContext dbContext) : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    [AllowAnonymous]
+    public class HomeController : ControllerBase
     {
+        [HttpGet]
         public IActionResult Index()
         {
+            return Ok(new
+            {
+                message = "Welcome to Hanwsallak API",
+                version = "1.0.0",
+                status = "Running",
+                endpoints = new
+                {
+                    authentication = "/api/Authentication",
+                    trips = "/api/Trip",
+                    shipments = "/api/Shipment",
+                    orders = "/api/Order",
+                    matching = "/api/Matching"
+                }
+            });
+        }
 
-
-            return View();
+        [HttpGet("health")]
+        public IActionResult Health()
+        {
+            return Ok(new
+            {
+                status = "Healthy",
+                timestamp = DateTime.UtcNow
+            });
         }
     }
 }

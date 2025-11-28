@@ -1,304 +1,387 @@
 [
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__1\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__1_3",
-    "RelativePath": "confirmEmail",
-    "HttpMethod": "GET",
-    "IsController": false,
+    "ContainingType": "Hanwsallak.API.Controllers.AuthenticationController",
+    "Method": "ConfirmEmail",
+    "RelativePath": "api/Authentication/ConfirmEmail",
+    "HttpMethod": "POST",
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.String",
+        "Name": "confirmEmail",
+        "Type": "Hanwsallak.Domain.DTO.Authentication.ConfirmEmailDto",
         "IsRequired": true
-      },
-      {
-        "Name": "code",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "changedEmail",
-        "Type": "System.String",
-        "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "MapIdentityApi-/confirmEmail"
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__DisplayClass1_0\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__6",
-    "RelativePath": "forgotPassword",
+    "ContainingType": "Hanwsallak.API.Controllers.AuthenticationController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/Authentication/ForgotPassword",
     "HttpMethod": "POST",
-    "IsController": false,
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "resetRequest",
-        "Type": "Microsoft.AspNetCore.Identity.Data.ForgotPasswordRequest",
+        "Name": "email",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
-        "MediaTypes": [
-          "application/problem\u002Bjson"
-        ],
-        "StatusCode": 400
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__1\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__1_1",
-    "RelativePath": "login",
+    "ContainingType": "Hanwsallak.API.Controllers.AuthenticationController",
+    "Method": "GoogleLogin",
+    "RelativePath": "api/Authentication/GoogleLogin",
     "HttpMethod": "POST",
-    "IsController": false,
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.AuthenticationController",
+    "Method": "Login",
+    "RelativePath": "api/Authentication/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "login",
-        "Type": "Microsoft.AspNetCore.Identity.Data.LoginRequest",
+        "Type": "Hanwsallak.Domain.DTO.Authentication.LoginDto",
         "IsRequired": true
-      },
-      {
-        "Name": "useCookies",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "useSessionCookies",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__1\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__1_8",
-    "RelativePath": "manage/2fa",
+    "ContainingType": "Hanwsallak.API.Controllers.AuthenticationController",
+    "Method": "Register",
+    "RelativePath": "api/Authentication/Register",
     "HttpMethod": "POST",
-    "IsController": false,
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "tfaRequest",
-        "Type": "Microsoft.AspNetCore.Identity.Data.TwoFactorRequest",
+        "Name": "register",
+        "Type": "Hanwsallak.Domain.DTO.Authentication.RegisterDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "Microsoft.AspNetCore.Identity.Data.TwoFactorResponse",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
-        "MediaTypes": [
-          "application/problem\u002Bjson"
-        ],
-        "StatusCode": 400
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 404
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__1\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__1_9",
-    "RelativePath": "manage/info",
+    "ContainingType": "Hanwsallak.API.Controllers.AuthenticationController",
+    "Method": "ResendConfirmationEmail",
+    "RelativePath": "api/Authentication/ResendConfirmationEmail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.AuthenticationController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Authentication/ResetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resetPassword",
+        "Type": "Hanwsallak.Domain.DTO.Authentication.ResetPasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.HomeController",
+    "Method": "Index",
+    "RelativePath": "api/Home",
     "HttpMethod": "GET",
-    "IsController": false,
+    "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "Microsoft.AspNetCore.Identity.Data.InfoResponse",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
-        "MediaTypes": [
-          "application/problem\u002Bjson"
-        ],
-        "StatusCode": 400
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 404
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__DisplayClass1_0\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__10",
-    "RelativePath": "manage/info",
-    "HttpMethod": "POST",
-    "IsController": false,
+    "ContainingType": "Hanwsallak.API.Controllers.HomeController",
+    "Method": "Health",
+    "RelativePath": "api/Home/health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.MatchingController",
+    "Method": "GetShipmentsForTrip",
+    "RelativePath": "api/Matching/ShipmentsForTrip/{tripId}",
+    "HttpMethod": "GET",
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "infoRequest",
-        "Type": "Microsoft.AspNetCore.Identity.Data.InfoRequest",
+        "Name": "tripId",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "Microsoft.AspNetCore.Identity.Data.InfoResponse",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
-        "MediaTypes": [
-          "application/problem\u002Bjson"
-        ],
-        "StatusCode": 400
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 404
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__DisplayClass1_0\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__2",
-    "RelativePath": "refresh",
-    "HttpMethod": "POST",
-    "IsController": false,
+    "ContainingType": "Hanwsallak.API.Controllers.MatchingController",
+    "Method": "GetTripsForShipment",
+    "RelativePath": "api/Matching/TripsForShipment/{shipmentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "refreshRequest",
-        "Type": "Microsoft.AspNetCore.Identity.Data.RefreshRequest",
+        "Name": "shipmentId",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__DisplayClass1_0\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__0",
-    "RelativePath": "register",
-    "HttpMethod": "POST",
-    "IsController": false,
+    "ContainingType": "Hanwsallak.API.Controllers.OrderController",
+    "Method": "AcceptOrder",
+    "RelativePath": "api/Order/{id}/Accept",
+    "HttpMethod": "PUT",
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "registration",
-        "Type": "Microsoft.AspNetCore.Identity.Data.RegisterRequest",
+        "Name": "id",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.OrderController",
+    "Method": "MarkDelivered",
+    "RelativePath": "api/Order/{id}/MarkDelivered",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.OrderController",
+    "Method": "StartDelivery",
+    "RelativePath": "api/Order/{id}/StartDelivery",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.OrderController",
+    "Method": "CreateOrder",
+    "RelativePath": "api/Order/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createOrderDto",
+        "Type": "Hanwsallak.Domain.DTO.Order.CreateOrderDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.OrderController",
+    "Method": "GetMyOrders",
+    "RelativePath": "api/Order/MyOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.ShipmentController",
+    "Method": "DeleteShipment",
+    "RelativePath": "api/Shipment/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.ShipmentController",
+    "Method": "GetAvailableShipments",
+    "RelativePath": "api/Shipment/Available",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fromCity",
+        "Type": "System.String",
+        "IsRequired": false
       },
       {
-        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
-        "MediaTypes": [
-          "application/problem\u002Bjson"
-        ],
-        "StatusCode": 400
+        "Name": "toCity",
+        "Type": "System.String",
+        "IsRequired": false
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__DisplayClass1_0\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__5",
-    "RelativePath": "resendConfirmationEmail",
+    "ContainingType": "Hanwsallak.API.Controllers.ShipmentController",
+    "Method": "CreateShipment",
+    "RelativePath": "api/Shipment/Create",
     "HttpMethod": "POST",
-    "IsController": false,
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "resendRequest",
-        "Type": "Microsoft.AspNetCore.Identity.Data.ResendConfirmationEmailRequest",
+        "Name": "createShipmentDto",
+        "Type": "Hanwsallak.Domain.DTO.Shipment.CreateShipmentDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions\u002B\u003C\u003Ec__1\u00601[[Hanwsallak.Domain.Entity.ApplicationUser, Hanwsallak.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "\u003CMapIdentityApi\u003Eb__1_7",
-    "RelativePath": "resetPassword",
-    "HttpMethod": "POST",
-    "IsController": false,
+    "ContainingType": "Hanwsallak.API.Controllers.ShipmentController",
+    "Method": "GetMyShipments",
+    "RelativePath": "api/Shipment/MyShipments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.TripController",
+    "Method": "UpdateTrip",
+    "RelativePath": "api/Trip/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "resetRequest",
-        "Type": "Microsoft.AspNetCore.Identity.Data.ResetPasswordRequest",
+        "Name": "id",
+        "Type": "System.Guid",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
       },
       {
-        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
-        "MediaTypes": [
-          "application/problem\u002Bjson"
-        ],
-        "StatusCode": 400
+        "Name": "updateTripDto",
+        "Type": "Hanwsallak.Domain.DTO.Trip.UpdateTripDto",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.TripController",
+    "Method": "DeleteTrip",
+    "RelativePath": "api/Trip/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.TripController",
+    "Method": "GetAvailableTrips",
+    "RelativePath": "api/Trip/Available",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fromCity",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "toCity",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.TripController",
+    "Method": "CreateTrip",
+    "RelativePath": "api/Trip/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createTripDto",
+        "Type": "Hanwsallak.Domain.DTO.Trip.CreateTripDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Hanwsallak.API.Controllers.TripController",
+    "Method": "GetMyTrips",
+    "RelativePath": "api/Trip/MyTrips",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]

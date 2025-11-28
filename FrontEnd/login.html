@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n-title-page="login.title">تسجيل الدخول - Hanwsallak</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- ربط الcss -->
+    <link rel="stylesheet" href="style/login.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <div id="header"></div>
+    <script>
+      fetch('components/header.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('header').innerHTML = data;
+          // Re-execute all scripts in the header
+          const scripts = document.getElementById('header').querySelectorAll('script');
+          scripts.forEach(oldScript => {
+            const newScript = document.createElement('script');
+            Array.from(oldScript.attributes).forEach(attr => {
+              newScript.setAttribute(attr.name, attr.value);
+            });
+            newScript.textContent = oldScript.textContent;
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+          });
+          // Re-apply translations after header loads
+          setTimeout(() => {
+            if (typeof i18n !== 'undefined') {
+              i18n.applyLanguage();
+            }
+          }, 500);
+        })
+        .catch(err => console.error('خطأ في تحميل الهيدر:', err));
+    </script>
+    <main class="container py-5" style="margin-top: 20px;">
+      <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 200px);">
+        <div class="col-12 col-lg-6 col-md-8">
+          <div class="card shadow-lg border-0 overflow-hidden">
+            <div class="row g-0">
+              <!-- الصورة -->
+              <div
+                class="col-12 col-md-5 d-flex justify-content-center align-items-center p-4 bg-success text-white"
+              >
+                <div class="text-center">
+                  <img
+                    src="images/log.png"
+                    alt="شخصية تسجيل الدخول"
+                    class="img-fluid mb-3"
+                    style="max-width: 200px;"
+                  />
+                  <h4 class="fw-bold" data-i18n="login.welcomeBack">مرحباً بعودتك!</h4>
+                  <p class="small mb-0" data-i18n="login.welcomeMessage">سجل دخولك للوصول إلى حسابك</p>
+                </div>
+              </div>
+
+              <!-- فورم تسجيل الدخول -->
+              <div class="col-12 col-md-7 p-5 bg-white">
+                <div class="card-body">
+                  <h2 class="card-title text-success text-center fw-bold mb-2" data-i18n="login.title">
+                    تسجيل الدخول
+                  </h2>
+                  <p class="text-muted small text-center mb-4" data-i18n="login.subtitle">
+                    أدخل بياناتك للوصول إلى حسابك
+                  </p>
+
+                  <!-- رسالة الخطأ/النجاح -->
+                  <div id="alertMessage" class="alert d-none" role="alert"></div>
+
+                  <form id="loginForm" novalidate>
+                    <div class="mb-3">
+                      <label for="email" class="form-label" data-i18n="login.email">البريد الإلكتروني</label>
+                      <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        required
+                        data-i18n-placeholder="login.emailPlaceholder"
+                        placeholder="example@email.com"
+                        autocomplete="email"
+                      />
+                      <div class="invalid-feedback" data-i18n="login.emailInvalid">
+                        الرجاء إدخال بريد إلكتروني صالح
+                      </div>
+                    </div>
+
+                    <div class="mb-3 position-relative">
+                      <label for="password" class="form-label" data-i18n="login.password">كلمة المرور</label>
+                      <div class="input-group">
+                        <input
+                          type="password"
+                          id="password"
+                          class="form-control"
+                          required
+                          minlength="6"
+                          data-i18n-placeholder="login.passwordPlaceholder"
+                          placeholder="••••••••"
+                          autocomplete="current-password"
+                        />
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="button"
+                          id="togglePwd"
+                        >
+                          <i class="fa-solid fa-eye"></i>
+                        </button>
+                      </div>
+                      <div class="invalid-feedback" data-i18n="login.passwordMinLength">
+                        كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل
+                      </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                        <label class="form-check-label small" for="rememberMe" data-i18n="login.rememberMe">
+                          تذكرني
+                        </label>
+                      </div>
+                      <a href="#" class="small text-success" id="forgotPasswordLink" data-i18n="login.forgotPassword">نسيت كلمة المرور؟</a>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                      <button type="submit" class="btn btn-success btn-lg" id="loginBtn">
+                        <span id="loginBtnText" data-i18n="login.loginButton">تسجيل الدخول</span>
+                        <span id="loginBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                      </button>
+                    </div>
+
+                    <div class="text-center small text-muted mt-3">
+                      <span data-i18n="login.noAccount">ليس لديك حساب؟</span>
+                      <a href="signup.html" class="text-success fw-bold" data-i18n="login.createAccount">إنشاء حساب جديد</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script>
+      fetch('components/footer.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('footer').innerHTML = data)
+        .catch(err => console.error('خطأ في تحميل الفوتر:', err));
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- API Service -->
+    <script src="scripts/api.js"></script>
+
+    <!-- i18n Script -->
+    <script src="scripts/i18n.js"></script>
+
+    <!-- Login JS -->
+    <script src="scripts/login.js"></script>
+  </body>
+</html>

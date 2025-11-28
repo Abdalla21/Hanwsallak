@@ -1,0 +1,171 @@
+<!-- Language Switcher Component -->
+<div class="language-switcher">
+  <div class="dropdown">
+    <button class="btn btn-outline-light rounded-pill px-3 dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+      <i class="fa-solid fa-globe"></i> <span id="currentLanguageText">العربية</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+      <li>
+        <a class="dropdown-item language-option" href="javascript:void(0)" data-lang="ar" onclick="if(window.switchLanguage){window.switchLanguage('ar');} return false;">
+          <i class="fa-solid fa-language"></i> <span>العربية</span>
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item language-option" href="javascript:void(0)" data-lang="en" onclick="if(window.switchLanguage){window.switchLanguage('en');} return false;">
+          <i class="fa-solid fa-language"></i> <span>English</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Global function to switch language - attach to window
+  window.switchLanguage = function(lang) {
+    console.log('Switching language to:', lang);
+    
+    // Update localStorage first
+    localStorage.setItem('language', lang);
+    
+    // Detect if we're in dashboard or root directory for script paths
+    const isDashboard = window.location.pathname.includes('/dashboard/');
+    const basePath = isDashboard ? '../' : '';
+    
+    // Load i18n script if not available
+    if (typeof window.i18n === 'undefined') {
+      const script = document.createElement('script');
+      script.src = basePath + 'scripts/i18n.js';
+      script.onload = () => {
+        if (window.i18n && window.i18n.setLanguage) {
+          window.i18n.setLanguage(lang).then(() => {
+            updateLanguageUI(lang);
+          });
+        } else {
+          window.location.reload();
+        }
+      };
+      document.head.appendChild(script);
+    } else if (window.i18n.setLanguage) {
+      window.i18n.setLanguage(lang).then(() => {
+        updateLanguageUI(lang);
+      });
+    } else {
+      window.location.reload();
+    }
+    
+    function updateLanguageUI(lang) {
+      // Update current language text
+      const currentLangText = document.getElementById('currentLanguageText');
+      if (currentLangText) {
+        currentLangText.textContent = lang === 'ar' ? 'العربية' : 'English';
+      }
+      
+      // Close dropdown
+      if (typeof bootstrap !== 'undefined') {
+        const dropdownElement = document.getElementById('languageDropdown');
+        if (dropdownElement) {
+          const dropdown = bootstrap.Dropdown.getInstance(dropdownElement);
+          if (dropdown) {
+            dropdown.hide();
+          }
+        }
+      }
+    }
+  };
+
+  // Initialize language display
+  (function() {
+    function updateLanguageDisplay() {
+      const currentLangText = document.getElementById('currentLanguageText');
+      if (!currentLangText) {
+        setTimeout(updateLanguageDisplay, 100);
+        return;
+      }
+
+      // Detect if we're in dashboard or root directory for script paths
+      const isDashboard = window.location.pathname.includes('/dashboard/');
+      const basePath = isDashboard ? '../' : '';
+
+      if (typeof window.i18n !== 'undefined') {
+        const currentLang = window.i18n.getLanguage();
+        currentLangText.textContent = currentLang === 'ar' ? 'العربية' : 'English';
+      } else {
+        // Try to load i18n script
+        const script = document.createElement('script');
+        script.src = basePath + 'scripts/i18n.js';
+        script.onload = () => {
+          if (window.i18n) {
+            const currentLang = window.i18n.getLanguage();
+            currentLangText.textContent = currentLang === 'ar' ? 'العربية' : 'English';
+          } else {
+            const lang = localStorage.getItem('language') || 'ar';
+            currentLangText.textContent = lang === 'ar' ? 'العربية' : 'English';
+          }
+        };
+        script.onerror = () => {
+          const lang = localStorage.getItem('language') || 'ar';
+          currentLangText.textContent = lang === 'ar' ? 'العربية' : 'English';
+        };
+        document.head.appendChild(script);
+      }
+    }
+
+    // Update on language change event
+    window.addEventListener('languageChanged', function(e) {
+      const lang = e.detail.language;
+      const currentLangText = document.getElementById('currentLanguageText');
+      if (currentLangText) {
+        currentLangText.textContent = lang === 'ar' ? 'العربية' : 'English';
+      }
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateLanguageDisplay);
+    } else {
+      updateLanguageDisplay();
+    }
+  })();
+</script>
+
+<style>
+  .language-switcher {
+    margin-left: 10px;
+    z-index: 10000;
+    position: relative;
+  }
+
+  .language-switcher .dropdown {
+    position: relative;
+  }
+
+  .language-switcher .dropdown-menu {
+    min-width: 150px;
+    z-index: 10001;
+  }
+
+  .language-switcher .language-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+  }
+
+  .language-switcher .language-option:hover {
+    background-color: #f8f9fa;
+  }
+
+  .language-switcher .language-option:active {
+    background-color: #e9ecef;
+  }
+
+  .language-switcher .language-option i {
+    color: #2ecc71;
+  }
+
+  .language-switcher #languageDropdown {
+    cursor: pointer;
+    z-index: 10000;
+  }
+</style>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صاحب الطرد | هنوصلك</title>
+
+  <!-- 🧩 خطوط وأيقونات -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- 🧩 Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+  <!-- 🧩 ملف CSS الخاص -->
+  <link rel="stylesheet" href="style/sender.css">
+</head>
+
+<body>
+
+ <div id="header"></div>
+<script>
+  fetch('components/header.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('header').innerHTML = data)
+    .catch(err => console.error('خطأ في تحميل الهيدر:', err));
+</script>
+
+  <!--  القسم الرئيسي المعدّل -->
+<section class="hero-section d-flex align-items-center">
+  <div class="container-fluid p-0">
+    <div class="row g-0 align-items-center">
+
+      <!-- الجهة اليمنى: النص -->
+      <div class="col-md-6 text-center text-md-end hero-text p-4 p-md-5">
+        <h1 class="fw-bold mb-3">ارسل طردك مع <span class="text-success">هنوصلك</span></h1>
+        <p class="fs-5 mb-4">
+          مشاوير أكثر أمانًا ويعتمد عليها وبأجرة منخفضة<br>
+          واصلني معك في كل مكان
+        </p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-end">
+          <a href="#" class="btn btn-success px-4 py-2 fw-bold rounded-pill">تحميل للآيفون</a>
+          <a href="#" class="btn btn-success px-4 py-2 fw-bold rounded-pill">تحميل للأندرويد</a>
+        </div>
+      </div>
+
+      <!-- الجهة اليسرى: الصورة -->
+      <div class="col-md-6 text-center hero-image">
+        <div class="hero-image-wrapper">
+          <img id="vanImage" src="images/carsender.png" class="img-fluid" alt="عربة التوصيل">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- قسم لماذا تختار هموصلك -->
+<section class="why-section text-center py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-5 text-white">لماذا تختار هنوصلك؟</h2>
+
+    <div class="row g-4">
+      <!-- بطاقة 1 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-box p-4 h-100 shadow-sm">
+          <div class="icon mb-3">
+            <i class="fa-solid fa-dollar-sign"></i>
+          </div>
+          <h5 class="fw-bold mb-2 text-white">وفر أكثر</h5>
+          <p class="text-white-50 mb-0">
+            يهتم هنوصلك دائمًا بتقديم أسعار معقولة وحلول اقتصادية مقابل رحلة آمنة ومريحة.
+          </p>
+        </div>
+      </div>
+
+      <!-- بطاقة 2 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-box p-4 h-100 shadow-sm">
+          <div class="icon mb-3">
+            <i class="fa-regular fa-clock"></i>
+          </div>
+          <h5 class="fw-bold mb-2 text-white">وقتك يهمنا</h5>
+          <p class="text-white-50 mb-0">
+            مع تطبيق هنوصلك سوف تنقل السيارة طردك الى اى موقع، مما يوفر لك الوقت وعدم كثرة التنقل .
+          </p>
+        </div>
+      </div>
+
+      <!-- بطاقة 3 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-box p-4 h-100 shadow-sm">
+          <div class="icon mb-3">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h5 class="fw-bold mb-2 text-white">السلامة أولًا</h5>
+          <p class="text-white-50 mb-0">
+            سلامة طردك هي أولويتنا. نحن نتابع كل رحلة ونتأكد من توفر جميع ميزات الأمان داخل التطبيق.
+          </p>
+        </div>
+      </div>
+
+      <!-- بطاقة 4 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-box p-4 h-100 shadow-sm">
+          <div class="icon mb-3">
+            <i class="fa-regular fa-face-smile"></i>
+          </div>
+          <h5 class="fw-bold mb-2 text-white">راحة أكثر</h5>
+          <p class="text-white-50 mb-0">
+            ستكون اكثر راحة مع متابعة شحنتك تصل بأمان والمتابعة خطوة بخطوة مع هنوصلك.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- خدمات مميزة -->
+
+<section class="services-section py-5 text-center text-light">
+  <div class="container">
+    <h2 class="fw-bold mb-5">خدمات مميزة لأصحاب الطرود</h2>
+    <div class="row g-4">
+
+      <!-- 🟦 الدعم -->
+      <div class="col-md-4">
+        <div class="service-box p-4 rounded-4 shadow-lg bg-dark h-100">
+          <div class="icon mb-3"><i class="fa-solid fa-headset fa-2x text-primary"></i></div>
+          <h4 class="fw-bold mb-3">الدعم</h4>
+          <ul class="list-unstyled text-start">
+            <li>• فريق دعم العملاء متاح على مدار الساعة</li>
+            <li>• مركز الخدمة داخل التطبيق</li>
+            <li>• حل المشكلات بسرعة وكفاءة</li>
+            <li>• الرد الفورى لمتابعة المشكلة</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 🟦 السلامة والخصوصية -->
+      <div class="col-md-4">
+        <div class="service-box p-4 rounded-4 shadow-lg bg-dark h-100">
+          <div class="icon mb-3"><i class="fa-solid fa-shield-halved fa-2x text-primary"></i></div>
+          <h4 class="fw-bold mb-3">السلامة والخصوصية</h4>
+          <ul class="list-unstyled text-start">
+            <li>• الحفاظ على سلامة الطرد</li>
+            <li>• الأرقام الخاصة</li>
+            <li>• مشاركة المشوار</li>
+            <li>• خصوصبة التقيمات للسائق</li>
+            <li>• ماسينجر فوري داخل التطبيق</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 🟦 أوضاع الوجهة -->
+      <div class="col-md-4">
+        <div class="service-box p-4 rounded-4 shadow-lg bg-dark h-100">
+          <div class="icon mb-3"><i class="fa-solid fa-location-dot fa-2x text-primary"></i></div>
+          <h4 class="fw-bold mb-3">أوضاع الوجهة</h4>
+          <ul class="list-unstyled text-start">
+            <li>•  معاينة الوجهة للطرد</li>
+            <li>• فلتر مكام الطرد</li>
+            <li>• معاينة مسافة المشوار</li>
+            <li>• تقدير الوقت والتكلفة</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- قسم الأسئلة الشائعة -->
+<section class="faq-section py-5 text-center text-light">
+  <div class="container">
+    <h2 class="fw-bold mb-3">الأسئلة الشائعة</h2>
+    <p class="text-secondary mb-5">إجابات على الأسئلة الأكثر شيوعًا حول خدمات هنوصلك</p>
+
+    <div class="accordion" id="faqAccordion">
+
+      <!-- سؤال 1 -->
+      <div class="accordion-item bg-dark text-start mb-3 border-0 rounded-4 shadow-sm">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+            data-bs-target="#faq1">
+            كيف يمكنني ارسال طرد عبر تطبيق هنوصلك؟
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-light">
+            يمكنك انشاء طلب بسهولة من خلال فتح التطبيق وتحديد موقعك الحالي والوجهة، ثم الضغط على "طلب ارسال طرد ". 
+            سيتم توصيل طردك بأقرب سائق متاح في منطقتك.
+          </div>
+        </div>
+      </div>
+
+      <!-- سؤال 2 -->
+      <div class="accordion-item bg-dark text-start mb-3 border-0 rounded-4 shadow-sm">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+            data-bs-target="#faq2">
+            ما هي طرق الدفع المتاحة؟
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-light">
+            يوفر هنوصلك عدة طرق للدفع تشمل الدفع النقدي، البطاقات البنكية، والمحافظ الإلكترونية، 
+            مع إمكانية استخدام رصيدك داخل التطبيق.
+          </div>
+        </div>
+      </div>
+
+      <!-- سؤال 3 -->
+      <div class="accordion-item bg-dark text-start mb-3 border-0 rounded-4 shadow-sm">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+            data-bs-target="#faq3">
+            كيف يمكنني تقييم السائق؟
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-light">
+            بعد إتمام التوصيل، سيظهر لك خيار لتقييم السائق داخل التطبيق بناءً على تجربتك.
+          </div>
+        </div>
+      </div>
+      <!-- السؤال 4 -->
+      <div class="accordion-item bg-dark text-white border-0 mb-2">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            هل يمكنني تتبع الطرد أثناء التوصيل؟
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+          data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-start">
+            نعم، يمكنك تتبع موقع الطرد في الوقت الفعلي على الخريطة داخل التطبيق حتى لحظة التسليم.
+          </div>
+        </div>
+      </div>
+
+      <!-- السؤال 5 -->
+      <div class="accordion-item bg-dark text-white border-0 mb-2">
+        <h2 class="accordion-header" id="headingFive">
+          <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            ما هي أنواع الطرود التي يمكن إرسالها؟
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+          data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-start">
+            يمكنك إرسال جميع أنواع الطرود الصغيرة والمتوسطة مثل الوثائق، المنتجات، والطرود الشخصية.<br>
+            الطرود القابلة للكسر أو ذات الوزن الكبير تحتاج لتأكيد خاص قبل الإرسال.
+          </div>
+        </div>
+      </div>
+
+      <!-- السؤال 6 -->
+      <div class="accordion-item bg-dark text-white border-0 mb-2">
+        <h2 class="accordion-header" id="headingSix">
+          <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+            كيف يمكنني إلغاء الطلب بعد إنشائه؟
+          </button>
+        </h2>
+        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+          data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-start">
+            يمكنك إلغاء الطلب من صفحة “طلباتي” قبل أن يتم قبول الطرد من أحد السائقين،<br>
+            أما إذا تم قبول الطلب، فسيُخصم جزء بسيط كرسوم خدمة.
+          </div>
+        </div>
+      </div>
+      <!-- قسم الاراء /////////////////  -->
+      
+      <section class="testimonials-section py-5">
+  <div class="container text-center">
+    <h2 class="text-white fw-bold mb-3">ماذا يقول عملاؤنا</h2>
+    <p class="text-muted mb-5">نفخر بخدمة آلاف العملاء يومياً ونسعى دائماً لتحسين تجربتهم مع هنوصلك</p>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testimonial-box p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <img src="images/manp.png" class="rounded-circle me-3" alt="على محمد">
+            <div class="text-start">
+              <h5 class="text-white mb-1">على محمد </h5>
+              <p class="text-muted mb-0">مستخدم منتظم</p>
+            </div>
+          </div>
+          <div class="stars mb-2">
+            ⭐⭐⭐⭐⭐
+          </div>
+          <p class="text-white text-end">
+            أستخدم هنوصلك باستمرار لتوصيل الاوراق. الخدمة ممتازة والسائقين محترفين. أسعار معقولة جدًا مقارنة بالخدمات الأخرى.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="testimonial-box p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <img src="images/womanp.png" class="rounded-circle me-3" alt=" ضحى محمد">
+            <div class="text-start">
+              <h5 class="text-white mb-1">ضحى محمد </h5>
+              <p class="text-muted mb-0">مستخدمة جديدة</p>
+            </div>
+          </div>
+          <div class="stars mb-2">
+            ⭐⭐⭐⭐☆
+          </div>
+          <p class="text-white text-end">
+            تجربتي الأولى مع هنوصلك كانت رائعة! التطبيق سهل الاستخدام والسائق وصل في الوقت والطرد سليم. سأستمر في استخدام الخدمة.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="testimonial-box p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <img src="images/manp.png" class="rounded-circle me-3" alt="اخمد الشرقاوى ">
+            <div class="text-start">
+              <h5 class="text-white mb-1">احمد الشرقاوى </h5>
+              <p class="text-muted mb-0">رجل أعمال</p>
+            </div>
+          </div>
+          <div class="stars mb-2">
+            ⭐⭐⭐⭐⭐
+          </div>
+          <p class="text-white text-end">
+            أعتمد على هنوصلك في ارسال الاوراق المهمة. الخدمة موثوقة والسيارات سريعة . أنصح به جميع المحتاجين لخدمة توصبل فى وقت سريع.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    </div>
+  </div>
+</section>
+<!--  استدعاء الفوتر -->
+<div id="footer"></div>
+<script>
+  fetch('components/footer.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('footer').innerHTML = data)
+    .catch(err => console.error('خطأ في تحميل الفوتر:', err));
+</script>
+
+
+  <!--  Bootstrap JS + ملف JavaScript الخاص -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts/sender.js"></script>
+</body>
+</html>

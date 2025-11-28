@@ -9,12 +9,17 @@ namespace Hanwsallak.Infrastructure
     {
         public static void AddInfrastructureDependencyInjections(this IServiceCollection services, IConfiguration configuration)
         {
+            // Write database (Primary)
             services.AddDbContext<ApplicationDBContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("DefaultConnection"),
+                    configuration.GetConnectionString("WriteConnection") ?? configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(ApplicationDBContext).Assembly.FullName)));
 
+            // Read-only database (Replica)
+            services.AddDbContext<ReadOnlyDBContext>(options =>
+                options.UseSqlServer(
+                    configuration.GetConnectionString("ReadOnlyConnection") ?? configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly(typeof(ReadOnlyDBContext).Assembly.FullName)));
         }
-
     }
 }

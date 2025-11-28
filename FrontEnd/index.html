@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width,initial-scale=1" />
+ <title data-i18n-title-page="common.appName">Hanwsallk</title>
+ <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/main.css"> 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+  <div id="header"></div>
+ <script>
+  fetch('components/header.html')
+   .then(res => res.text())
+   .then(data => {
+     document.getElementById('header').innerHTML = data;
+     // Re-execute all scripts in the header
+     const scripts = document.getElementById('header').querySelectorAll('script');
+     scripts.forEach(oldScript => {
+       const newScript = document.createElement('script');
+       Array.from(oldScript.attributes).forEach(attr => {
+         newScript.setAttribute(attr.name, attr.value);
+       });
+       newScript.textContent = oldScript.textContent;
+       oldScript.parentNode.replaceChild(newScript, oldScript);
+     });
+     // Re-apply translations after header loads
+     setTimeout(() => {
+       if (typeof i18n !== 'undefined') {
+         i18n.applyLanguage();
+       }
+     }, 500);
+   })
+   .catch(err => console.error('خطأ في تحميل الهيدر:', err));
+ </script>
+
+
+ <section class="hero">
+ <div class="hero-container">
+
+    <div class="hero-text animate-fade-left">
+   <h1><span data-i18n="home.heroTitle">.Simple and cheaper</span><br><span data-i18n="home.heroSubtitle">.The delivery you need</span></h1>
+   <p data-i18n-html="home.heroDescription">
+ .Send (almost) anything, anywhere in Egypt thanks to already planned journeys<br>
+ It's convenient and good for the planet. Welcome to <span class="brand-name">Hanwsallak</span>
+</p>
+
+   <div class="hero-buttons">
+    <a href="signup.html?role=sender" class="btn-primary" data-i18n="home.sendPackage">وصل طردك لأي مكان</a>
+    <a href="signup.html?role=driver" class="btn-outline" data-i18n="home.joinCaptain">انضم لكابتن هنوصلك</a>
+   </div>
+  </div>
+
+    <div class="hero-image animate-fade-right">
+   <img src="images/pho1.png" alt="Hanwsallk App Preview" class="phone-img">
+   <img src="images/char1.png" alt="Hanwsallk Box Character" class="box-character">
+  </div>
+
+ </div>
+</section>
+
+<script>
+ // تشغيل الأنيميشن عند ظهور القسم
+ const animatedElements = document.querySelectorAll('.animate-fade-left, .animate-fade-right, .box-character');
+ const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+   if (entry.isIntersecting) {
+    entry.target.classList.add('show');
+   }
+  });
+ }, { threshold: 0.2 });
+
+ animatedElements.forEach(el => observer.observe(el));
+</script>
+
+<section class="features">
+ <div class="features-container">
+
+    <div class="feature-item">
+   <i class="fa-solid fa-euro-sign feature-icon"></i>
+   <h3>توصيل اقتصادي</h3>
+   <p>وفر حتى 80٪ على الطرود والمشتريات الكبيرة.</p>
+  </div>
+
+    <div class="feature-item">
+   <i class="fa-solid fa-shield-halved feature-icon"></i>
+   <h3>تأمين كامل</h3>
+   <p>نؤمن جميع شحناتك لراحة بالك.</p>
+  </div>
+
+    <div class="feature-item">
+   <i class="fa-solid fa-star feature-icon"></i>
+   <h3>رضا العملاء</h3>
+   <p>تقييمنا 4.7/5 من عملائنا الموثوقين.</p>
+  </div>
+
+ </div>
+</section>
+
+<section class="captain-benefits">
+  <h2 class="section-title">مزايا الكابتن</h2>
+  <p class="section-subtitle">
+   انضم إلى آلاف الكباتن في تطبيق هنوصلك واستمتع بالعديد من المزايا التي تساعدك على زيادة دخلك اليومي
+  </p>
+ <div class="container">
+
+    <div class="benefits-grid">
+
+   <div class="benefit-card">
+    <div class="benefit-icon blue"><i class="fa-solid fa-dollar-sign"></i></div>
+    <h3 data-i18n="home.lowCommission">عمولة منخفضة</h3>
+    <p data-i18n="home.lowCommissionDesc">استمتع بعمولة منخفضة تصل إلى 10٪ فقط من قيمة الرحلة مما يضمن لك دخلاً أعلى.</p>
+   </div>
+
+   <div class="benefit-card">
+    <div class="benefit-icon green"><i class="fa-solid fa-clock"></i></div>
+    <h3 data-i18n="home.flexibleWork">مرونة في العمل</h3>
+    <p data-i18n="home.flexibleWorkDesc">اعمل في الأوقات التي تناسبك وحدد ساعات عملك بنفسك دون أي قيود.</p>
+   </div>
+
+   <div class="benefit-card">
+    <div class="benefit-icon red"><i class="fa-solid fa-map-location-dot"></i></div>
+    <h3 data-i18n="home.heatMap">خريطة حرارية</h3>
+    <p data-i18n="home.heatMapDesc">استخدم الخريطة الحرارية لمعرفة المناطق ذات الطلب العالي وزيادة فرص الحصول على رحلات.</p>
+   </div>
+
+   <div class="benefit-card">
+    <div class="benefit-icon purple"><i class="fa-solid fa-chart-line"></i></div>
+    <h3 data-i18n="home.detailedAnalytics">تحليلات مفصلة</h3>
+    <p data-i18n="home.detailedAnalyticsDesc">احصل على تقارير وإحصائيات مفصلة عن أدائك ودخلك لمساعدتك على تحسين عملك.</p>
+   </div>
+
+   <div class="benefit-card">
+    <div class="benefit-icon yellow"><i class="fa-solid fa-bolt"></i></div>
+    <h3 data-i18n="home.instantPayment">دفع فوري</h3>
+    <p data-i18n="home.instantPaymentDesc">احصل على مستحقاتك المالية بشكل فوري من خلال المحفظة الإلكترونية أو التحويل البنكي.</p>
+   </div>
+
+   <div class="benefit-card">
+    <div class="benefit-icon teal"><i class="fa-solid fa-headset"></i></div>
+    <h3 data-i18n="home.excellentSupport">دعم فني متميز</h3>
+    <p data-i18n="home.excellentSupportDesc">فريق دعم فني متاح على مدار الساعة لمساعدتك في حل أي مشكلة قد تواجهك.</p>
+   </div>
+
+  </div>
+ </div>
+</section>
+<section class="how-it-works">
+ <div class="how-container">
+
+    <div class="how-text">
+   <div class="step">
+    <h3 data-i18n="home.createTransportRequest">Create a transport request</h3>
+    <p data-i18n-html="home.createTransportRequestDesc">
+     ,Enter the details of the parcel to be sent (description, dimensions and weight)<br> 
+     .Add a photo and confirm the price
+    </p>
+   </div>
+
+   <div class="step">
+    <h3 data-i18n="home.confirmBooking">Confirm your booking</h3>
+    <p data-i18n-html="home.confirmBookingDesc">
+     Pay online and benefit from Hanwsallk insurance. Hanwsallk acts as a trusted third<br>
+     .party: payment is released to the transporter once the parcel is delivered
+    </p>
+   </div>
+
+   <div class="step">
+    <h3 data-i18n="home.receiveOffers">Receive offers</h3>
+    <p data-i18n-html="home.receiveOffersDesc">
+     We will send your shipping request to our network of travelers and drivers<br> whose
+     .routes pass through the area where you want to ship your items
+    </p>
+   </div>
+
+   <a href="#" class="btn-dark" data-i18n="home.howItWorkButton">HOW IT WORK</a>
+  </div>
+
+    <div class="how-image">
+   <img src="images/how.png" alt="How to send with Hanwsallk">
+  </div>
+ </div>
+</section>
+<section class="stats">
+ <div class="stats-container">
+
+    <h2 data-i18n-html="home.chooseFastestOption">Choose the fastest option<br> .for your delivery service</h2>
+
+    <div class="stats-main">
+   <img src="images/num.png" alt="Cartoon character" class="stats-img">
+
+   <div class="stats-box">
+    <h3 id="userCount" data-i18n="home.usersCount">12156 users</h3>
+    <p data-i18n="home.numberOfUsers">Number of service users</p>
+   </div>
+  </div>
+
+    <p class="stats-desc" data-i18n-html="home.statsDescription">
+   ,Get lightning-fast delivery with instant offers, the quickest drivers<br> accurate ETAs, 
+   real-time tracking, and secure payment<br> .all designed to fit your schedule and give you peace of mind
+  </p>
+
+ </div>
+</section>
+ <section class="smile-section">
+ <div class="smile-container">
+  
+    <div class="smile-left">
+   <img src="images/fast.png" alt="Hanwsallk character" class="char-img">
+  </div>
+
+    <div class="smile-right">
+   <div class="smile-item">
+    <h3 data-i18n="home.happyCustomers">Happy customers</h3>
+    <p data-i18n-html="home.happyCustomersDesc">.Tested and approved by thousands of users who save money with Hanwsallk<br> ?Life is good, isn't it</p>
+   </div>
+
+   <div class="smile-item">
+    <h3 data-i18n="home.parcelsPampered">Parcels pampered</h3>
+    <p data-i18n-html="home.parcelsPamperedDesc">.99%that's the chance your parcel will be delivered without a hitch<br> .Because your parcels deserve to be pampered too</p>
+    </div>
+
+   <div class="smile-item">
+    <h3 data-i18n="home.humanApproach">A human approach</h3>
+    <p data-i18n-html="home.humanApproachDesc">We recreate social bonds by fostering mutual help between people<br> !who don't know each other. It's virtual</p>
+   </div>
+
+   <div class="smile-item">
+    <h3 data-i18n="home.presentCustomerService">A present customer service</h3>
+    <p data-i18n-html="home.presentCustomerServiceDesc">.Because every user matters to us. You'll get a reply in less than 1h30<br> !And not from a robot</p>
+   </div>
+  </div>
+
+ </div>
+</section>
+<section class="fast-secure-section">
+ <div class="container">
+  <div class="fast-secure-container">
+   
+      <div class="fast-secure-text">
+    
+        <div class="conversation">
+     <div class="message sender-message">
+      <div class="avatar sender-avatar">
+       <i class="fa-solid fa-user"></i>
+      </div>
+      <div class="message-content">
+       <p class="message-text" data-i18n-html="home.senderMessage">.Hi! I need to send a package to downtown today<br> ?Can you deliver it quickly</p>
+       <span class="message-sender" data-i18n="header.sender">Sender</span>
+      </div>
+     </div>
+     
+     <div class="message driver-message">
+      <div class="avatar driver-avatar">
+       <i class="fa-solid fa-truck"></i>
+      </div>
+      <div class="message-content">
+       <p class="message-text" data-i18n-html="home.driverMessage">.Yes! I'm passing by that area this afternoon<br>.I can pick it up at 3 PM and deliver it within an hour<br> .You can track it live until it arrives</p>
+       <span class="message-sender" data-i18n="header.driver">Driver</span>
+      </div>
+     </div>
+    </div>
+    
+    <a href="signup.html?role=sender" class="btn-primary" data-i18n="home.startShippingNow">ابدأ شحنتك الآن</a>
+   </div>
+   
+   <div class="fast-secure-info">
+    <h2 data-i18n-html="home.fastSecureOnTime">,Fast, Secure<br>.and Right on Time</h2>
+    <p class="tagline" data-i18n-html="home.fastSecureTagline">,Experience worry-free delivery — lightning fast<br> .fully secure, and always right on time</p>
+   </div>
+   
+  </div>
+ </div>
+ <img class="decor-image" src="images/set.png" alt="Decorative Image">
+<img class="decor-image-right" src="images/car.png" alt="Decor Right">
+
+</section>
+
+<section class="app-section">
+ <div class="app-container">
+  
+    <div class="phone-container">
+   <img src="images\mob.png" alt="Hanwsallk App" class="phone">
+   <img src="images\not.png" alt="Notification" class="notification">
+  </div>
+
+    <div class="app-info">
+   <h2 data-i18n-html="home.deliveryInPocket">Hanwsallk, delivery that<br>.fits in your pocket</h2>
+   <p data-i18n-html="home.deliveryInPocketDesc">
+    !Designed for both senders and transporters, our app goes everywhere with you<br>
+    !Available now by scanning the QR code. Go ahead, it's free
+   </p>
+   
+      <div class="app-downloads">
+    <img src="images/qr.png" alt="QR Code" class="qr">
+    <div class="store-buttons">
+     <a href="#"><img src="images\google.png" alt="Google Play"></a>
+     <a href="#"><img src="images\apple.png" alt="App Store"></a>
+    </div>
+   </div>
+  </div>
+
+ </div>
+</section>
+
+ <div id="footer"></div>
+ <script>
+  fetch('components/footer.html')
+   .then(res => res.text())
+   .then(data => document.getElementById('footer').innerHTML = data)
+   .catch(err => console.error('خطأ في تحميل الفوتر:', err));
+ </script>
+
+ <!-- Load i18n script at the end -->
+ <script src="scripts/i18n.js"></script>
+
+</body>
+</html>

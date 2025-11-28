@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز المساعدة | تطبيق هنوصلك</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style/help-center.css"> 
+    
+    </head>
+<body class="bg-dark">
+
+    <div id="header"></div>
+    <script>
+        fetch('components/header.html')
+            .then(res => res.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+    </script>
+
+    <section class="help-hero position-relative d-flex align-items-end" 
+             style="background-image: url('images/centerhelp.png');">
+        <div class="container py-5 text-end text-white position-relative z-1">
+            <p class="mb-1 text-success fw-bold">Hanwsallak | Help center</p>
+            <h1 class="fw-bold mb-3">مركز المساعدة</h1>
+            <p class="fs-5 mb-4 col-md-8">لتعرف على أهم الأسئلة التي يطرحها مستخدمو التطبيق. نهدف لتبسيط تجربتك وتقديم إجابات وافية على الفور.</p>
+            
+            <div class="d-flex gap-2 justify-content-end">
+                <a href="#" class="btn btn-success fw-bold">الدعم كعميل وصاحب طرد</a>
+                <a href="#" class="btn btn-primary fw-bold">الدعم كسائق و شريك</a>
+            </div>
+        </div>
+        <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+    </section>
+
+    <section class="faq py-5">
+        <div class="container">
+            <h2 class="text-center text-white fw-bold mb-1">الأسئلة الشائعة</h2>
+            <p class="text-center text-light opacity-75 mb-4">إجابات على الأسئلة الأكثر شيوعاً من مستخدمي هنوصلك</p>
+
+            <div class="text-center mb-5 d-flex justify-content-center gap-3">
+                <a href="#" class="btn btn-success rounded-pill px-4 fw-bold">للسائقين</a>
+                <a href="#" class="btn btn-dark border border-secondary rounded-pill px-4 fw-bold">لأصحاب الطرود</a>
+            </div>
+
+            <div class="mb-4">
+                <input type="text" class="form-control bg-dark text-white border-secondary rounded-pill py-2" 
+                       placeholder="...ابحث عن سؤال">
+            </div>
+
+            <div class="accordion" id="faqAccordion">
+                
+                <div class="accordion-item bg-dark border-secondary mb-3 rounded-3">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button bg-dark text-white fw-bold collapsed" 
+                                type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <i class="fa-solid fa-plus me-3"></i> كيف يمكنني التسجيل للانضمام لعائلة شركاء هنوصلك السائقين؟
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-light opacity-75 pt-0">
+                              يمكنك الانضمام إلى كباتن هنوصلك بسهولة من خلال تحميل التطبيق وتسجيل بياناتك في محرر السائقين. بعد التسجيل يتم التحقق من بطاقتك الشخصية، رخصة القيادة، ووثائق السيارة. بعد مراجعة البيانات والموافقة عليها يمكنك بدء العمل فورًا.
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-dark border-secondary mb-3 rounded-3">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button bg-dark text-white fw-bold" 
+                                type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fa-solid fa-plus me-3"></i> كيف يمكنني ارسال طرد عبر تطبيق هنوصلك؟
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-light opacity-75 pt-0">
+                            <ul class="list-unstyled text-end">
+                                <li> يمكنك انشاء طلب بسهولة من خلال فتح التطبيق وتحديد موقعك الحالي والوجهة، ثم الضغط على "طلب ارسال طرد ". سيتم توصيل طردك بأقرب سائق متاح في منطقتك.
+                                </li>                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item bg-dark border-secondary mb-3 rounded-3">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button bg-dark text-white fw-bold collapsed" 
+                                type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <i class="fa-solid fa-plus me-3"></i> ما هي طرق الدفع المتاحة؟
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-light opacity-75 pt-0">
+                            يوفر هنوصلك عدة طرق للدفع تشمل الدفع النقدي، البطاقات البنكية، والمحافظ الإلكترونية، مع إمكانية استخدام رصيدك داخل التطبيق.
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item bg-dark border-secondary mb-3 rounded-3">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button bg-dark text-white fw-bold collapsed" 
+                                type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <i class="fa-solid fa-plus me-3"></i> ما هي أنواع الطرود التي يمكن إرسالها؟
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-light opacity-75 pt-0">
+                            يمكنك إرسال جميع أنواع الطرود الصغيرة والمتوسطة مثل الوثائق، المنتجات، والطرود الشخصية.
+الطرود القابلة للكسر أو ذات الوزن الكبير تحتاج لتأكيد خاص قبل الإرسال.
+                        </div>
+                    </div>
+                </div>
+                
+                </div>
+            
+            <div class="contact-section mt-5 p-4 rounded-4 text-center">
+                <h4 class="text-white fw-bold mb-3">هل لديك المزيد من الأسئلة؟</h4>
+                <p class="text-light opacity-75 mb-4">فريق خدمة العملاء لدينا متاح على مدار الساعة للإجابة على جميع استفساراتك.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="btn btn-success fw-bold rounded-pill px-4"><i class="fa-solid fa-comment-dots me-2"></i>دردشة مباشرة</a>
+                    <a href="#" class="btn btn-outline-light fw-bold rounded-pill px-4"><i class="fa-solid fa-phone me-2"></i>اتصل بنا</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <div id="footer"></div>
+    <script>
+        fetch('components/footer.html')
+            .then(res => res.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

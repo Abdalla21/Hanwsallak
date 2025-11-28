@@ -40,9 +40,6 @@ C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Microsoft.OpenApi.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\System.ClientModel.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\System.Drawing.Common.dll
@@ -87,13 +84,16 @@ C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\Hanwsall.AAC8703F.Up2Date
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\Hanwsallak.API.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\refint\Hanwsallak.API.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\Hanwsallak.API.pdb
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\Hanwsallak.API.genruntimeconfig.cache
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\ref\Hanwsallak.API.dll
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\FluentValidation.dll
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\MediatR.dll
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\MediatR.Contracts.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Humanizer.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Microsoft.Build.Locator.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
@@ -176,3 +176,5 @@ C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Abdalla.Ahmed\source\repos\Hanwsallak\BackEnd\Hanwsallak\Hanwsallak\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

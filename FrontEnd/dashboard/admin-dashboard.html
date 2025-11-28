@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .card h3 {
+      margin: 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .card p {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 0.5rem;
+      color: #111;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 2rem;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: #f3f4f6;
+      color: #444;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .status {
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: white;
+    }
+    button[onclick="logout()"] {
+  background-color: #e63946; /*  أحمر */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+button[onclick="logout()"]:hover {
+  background-color: #c53030; /* أحمر أغمق عند التمرير */
+}
+
+    .pending { background: #facc15; }
+    .accepted { background: #3b82f6; }
+    .delivered { background: #22c55e; }
+    .cancelled { background: #ef4444; }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h2> Hanwsallak Admin</h2>
+    <button onclick="logout()">Logout</button>
+  </header>
+
+  <section class="stats">
+    <div class="card"><h3>Total Revenue</h3><p id="revenue">EGP 0.00</p></div>
+    <div class="card"><h3>Total Orders</h3><p id="orders">0</p></div>
+    <div class="card"><h3>Active Orders</h3><p id="activeOrders">0</p></div>
+    <div class="card"><h3>Total Drivers</h3><p id="drivers">0</p></div>
+    <div class="card"><h3>Total Customers</h3><p id="customers">0</p></div>
+  </section>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Driver</th>
+        <th>Status</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody id="orderTable">
+      <!-- سيتم ملء البيانات هنا -->
+    </tbody>
+  </table>
+
+  <script>
+    const orders = [
+      { id: 'A001', customer: 'Ahmed', driver: 'Omar', status: 'pending', price: 120 },
+      { id: 'A002', customer: 'Sara', driver: 'Youssef', status: 'delivered', price: 200 },
+      { id: 'A003', customer: 'Mona', driver: '-', status: 'accepted', price: 150 },
+    ];
+
+    const revenue = orders
+      .filter(o => o.status === 'delivered')
+      .reduce((sum, o) => sum + o.price, 0);
+
+    document.getElementById('revenue').innerText = `EGP ${revenue.toFixed(2)}`;
+    document.getElementById('orders').innerText = orders.length;
+    document.getElementById('activeOrders').innerText = orders.filter(o => o.status !== 'delivered').length;
+    document.getElementById('drivers').innerText = '5';
+    document.getElementById('customers').innerText = '12';
+
+    const table = document.getElementById('orderTable');
+    orders.forEach(order => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${order.id}</td>
+        <td>${order.customer}</td>
+        <td>${order.driver}</td>
+        <td><span class="status ${order.status}">${order.status}</span></td>
+        <td>EGP ${order.price}</td>
+      `;
+      table.appendChild(row);
+    });
+
+    function logout() {
+      alert('You have been logged out!');
+    }
+  </script>
+</body>
+</html>

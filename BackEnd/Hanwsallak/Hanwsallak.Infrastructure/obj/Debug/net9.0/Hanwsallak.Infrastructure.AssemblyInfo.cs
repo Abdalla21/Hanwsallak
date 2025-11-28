@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hanwsallak.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89fb7e8e01731cf6b56acee9c3702af68f564b7e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+445502075857981bd6c65ce15855da2467603624")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hanwsallak.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hanwsallak.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

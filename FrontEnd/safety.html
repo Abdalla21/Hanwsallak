@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الأمان | تطبيق هنوصلك</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style/safety.css">
+</head>
+<body>
+
+  <!-- الهيدر -->
+  <div id="header"></div>
+  <script>
+    fetch('components/header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('header').innerHTML = data);
+  </script>
+
+  <!-- ======= قسم البطل ======= -->
+  <section class="safety-hero text-center text-light d-flex align-items-center justify-content-center">
+    <div class="container">
+      <h1 class="fw-bold mb-3">سلامتك أولويتنا القصوى</h1>
+      <p class="fs-5 mb-4">في هنوصلك، نعمل باستمرار على تطوير ميزات الأمان لتوفير تجربة آمنة وموثوقة لكل المستخدمين</p>
+      <a href="#" class="btn btn-success rounded-pill px-4 fw-bold">اعرف المزيد</a>
+    </div>
+  </section>
+
+  <!-- ======= ميزات الأمان ======= -->
+  <section class="safety-features py-5 text-center">
+    <div class="container">
+      <h2 class="fw-bold text-green mb-5">ميزات الأمان المتقدمة</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-box bg-dark p-4 rounded-4 h-100">
+            <i class="fa-solid fa-id-card mb-3 text-success fs-2"></i>
+            <h5 class="fw-bold mb-2">التحقق من هوية السائقين</h5>
+            <p class="text-light opacity-75">نقوم بفحص دقيق لجميع السائقين من خلال المستندات الرسمية والسجل الجنائي لضمان أعلى درجات الأمان.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-box bg-dark p-4 rounded-4 h-100">
+            <i class="fa-solid fa-route mb-3 text-success fs-2"></i>
+            <h5 class="fw-bold mb-2">مشاركة تفاصيل الرحلة</h5>
+            <p class="text-light opacity-75">يمكنك مشاركة تفاصيل رحلتك مع الأصدقاء والعائلة لتتبع موقع الطرد في الوقت الحقيقي بسهولة.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-box bg-dark p-4 rounded-4 h-100">
+            <i class="fa-solid fa-bell mb-3 text-success fs-2"></i>
+            <h5 class="fw-bold mb-2">زر الطوارئ</h5>
+            <p class="text-light opacity-75">زر سريع داخل التطبيق يتيح التواصل الفوري مع الدعم في حال حدوث أي طارئ.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= نصائح الأمان ======= -->
+  <section class="safety-tips py-5">
+    <div class="container text-center text-light">
+      <h2 class="fw-bold text-green mb-5">نصائح للرحلة الآمنة</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="tips-box p-4 bg-dark rounded-4 h-100">
+            <h5 class="fw-bold text-success mb-3">لاصحاب الطرود</h5>
+            <ul class="list-unstyled text-start">
+              <li>✅ تحقق من هوية السائق قبل البدء</li>
+              <li>✅ شارك تفاصيل رحلتك مع شخص تثق به</li>
+              <li>✅ المتابعة لحظة بلحظة</li>
+              <li>✅ لا تشارك معلوماتك الشخصية</li>
+              <li>✅ استخدم زر الطوارئ عند الحاجة</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="tips-box p-4 bg-dark rounded-4 h-100">
+            <h5 class="fw-bold text-success mb-3">للسائقين</h5>
+            <ul class="list-unstyled text-start">
+              <li>✅ تحقق من هوية صاحب الطرد قبل بدء الرحلة</li>
+              <li>✅ تحقق من الطرد</li>
+              <li>✅ قُد بحذر والتزم بالسرعات القانونية</li>
+              <li>✅ استخدم التقييم لتحسين أدائك</li>
+              <li>✅ أبلغ عن أي مشكلة للدعم الفني فورًا</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= قسم التحميل ======= -->
+  <section class="download-app text-center py-5">
+    <div class="container">
+      <h3 class="text-white fw-bold mb-3">جاهز لتجربة أكثر أمانًا؟</h3>
+      <p class="text-light mb-4">حمل تطبيق هنوصلك الآن واستمتع برحلات آمنة وسلسة مع ميزات الأمان الحديثة</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="#" class="btn btn-success rounded-pill px-4"><i class="fa-brands fa-google-play me-2"></i>تحميل للأندرويد</a>
+        <a href="#" class="btn btn-light rounded-pill px-4"><i class="fa-brands fa-apple me-2"></i>تحميل للآيفون</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+  <script>
+    fetch('components/footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

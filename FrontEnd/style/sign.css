@@ -1,0 +1,136 @@
+body {
+  font-family: 'Cairo', system-ui, Arial, sans-serif;
+  margin: 0;
+  padding-top: 80px; /* Space for fixed header */
+}
+
+/* الخلفية الكاملة */
+.signup-section {
+  min-height: 100vh;
+background: url('../images/siback.png') center center/cover no-repeat fixed;
+}
+
+
+
+/* طبقة شفافة فوق الخلفية   */
+.signup-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3px);
+  z-index: -1;
+}
+
+.signup-card {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* الجانب الأخضر */
+.character-side {
+  background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
+  color: #fff;
+}
+
+.character-img {
+  width: 70%;
+  max-width: 220px;
+  filter: drop-shadow(0 8px 10px rgba(0,0,0,0.25));
+  animation: wave 3s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+@keyframes wave {
+  0%,100% { transform: rotate(0deg); }
+  30% { transform: rotate(-3deg); }
+  60% { transform: rotate(3deg); }
+}
+
+/* أزرار اختيار الدور */
+.role-btn {
+  background-color: #e8f9ec;
+  border: 2px solid #2ecc71;
+  color: #2ecc71;
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.role-btn.active {
+  background-color: #2ecc71;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(46,204,113,0.3);
+}
+
+.role-btn:hover {
+  background-color: #27ae60;
+  color: #fff;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #2ecc71;
+  box-shadow: 0 0 0 0.15rem rgba(46,204,113,0.15);
+}
+
+/* الزر الرئيسي */
+.btn-success {
+  background-color: #2ecc71;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn-success:hover {
+  background-color: #27ae60;
+  transform: scale(1.03);
+}
+
+@media (max-width: 767px) {
+  .character-side { padding: 1.5rem; }
+  .character-img { width: 60%; }
+}
+/*جعل النص على اليمين*/
+input, select, textarea {
+    text-align: right;
+}
+
+
+input::placeholder, select::placeholder, textarea::placeholder {
+    text-align: right;
+    direction: rtl; 
+}
+
+/* Alert styling */
+#signupAlert {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#errorList {
+  list-style: none;
+  padding-right: 20px;
+  margin-top: 10px;
+}
+
+#errorList li {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+#errorList li:before {
+  content: "• ";
+  color: #dc3545;
+  font-weight: bold;
+  margin-left: 5px;
+}

@@ -1,112 +1,0 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>إنشاء حساب </title>
-
-    <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- ربط الcss -->
-    <link rel="stylesheet" href="login.css" />
-  </head>
-  <body class="bg-light">
-    <main class="container py-5">
-      <div class="row justify-content-center align-items-center">
-        <div class="col-12 col-lg-10">
-          <div class="card shadow-sm signup-card overflow-hidden border-0">
-            <div class="row g-0">
-              <!-- الشخصية -->
-              <div
-                class="col-12 col-md-6 d-flex justify-content-center align-items-center p-4 bg-white character-col"
-              >
-                <img
-                  id="characterImg"
-                  src="images\log.png"
-                  alt="شخصية التسجيل"
-                  class="character-img signup"
-                />
-              </div>
-
-              <!-- فورم التسجيل -->
-              <div class="col-12 col-md-6 p-5 bg-light form-col">
-                <div class="card-body">
-                  <h2 class="card-title text-success text-center fw-bold mb-2">
-                    أهلاً بك في عالم التوصيل!
-                  </h2>
-                  <p class="text-muted small text-center mb-4">
-                    أنشئ حسابك الآن وابدأ بتتبع طرودك بسهولة 🚚
-                  </p>
-
-                  <form id="signupForm" novalidate>
-                    <div class="mb-3">
-                      <label for="username" class="form-label">اسم المستخدم</label>
-                      <input
-                        type="text"
-                        id="username"
-                        class="form-control"
-                        required
-                        minlength="3"
-                        placeholder="أدخل اسم المستخدم"
-                      />
-                      <div class="invalid-feedback">
-                        الرجاء إدخال اسم مستخدم صالح (3 أحرف على الأقل)
-                      </div>
-                    </div>
-
-                    
-
-                    <div class="mb-3 position-relative">
-                      <label for="password" class="form-label">كلمة المرور</label>
-                      <div class="input-group">
-                        <input
-                          type="password"
-                          id="password"
-                          class="form-control"
-                          required
-                          minlength="6"
-                          placeholder="••••••••"
-                        />
-                        <button
-                          class="btn btn-outline-secondary"
-                          type="button"
-                          id="togglePwd"
-                        >
-                          عرض
-                        </button>
-                      </div>
-                      <div class="invalid-feedback">
-                        كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل
-                      </div>
-                    </div>
-
-                    <div class="d-grid mt-4">
-                      <button type="submit" class="btn btn-success btn-lg">
-                        إنشاء حساب
-                      </button>
-                    </div>
-
-                    <div class="text-center small text-muted mt-3">
-                      لديك حساب بالفعل؟
-                      <a href="login.html">تسجيل الدخول</a>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- JS -->
-    <script src="login.js"></script>
-  </body>
-</html>

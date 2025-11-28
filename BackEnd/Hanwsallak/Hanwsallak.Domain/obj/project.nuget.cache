@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "BqHeEbPXdYM=",
+  "dgSpecHash": "uQyNo/vh8Qk=",
   "success": true,
   "projectFilePath": "C:\\Users\\Abdalla.Ahmed\\source\\repos\\Hanwsallak\\BackEnd\\Hanwsallak\\Hanwsallak.Domain\\Hanwsallak.Domain.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Abdalla.Ahmed\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
+    "C:\\Users\\Abdalla.Ahmed\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "C:\\Users\\Abdalla.Ahmed\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\Abdalla.Ahmed\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\Abdalla.Ahmed\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\9.0.10\\microsoft.aspnetcore.cryptography.internal.9.0.10.nupkg.sha512",
     "C:\\Users\\Abdalla.Ahmed\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\9.0.10\\microsoft.aspnetcore.cryptography.keyderivation.9.0.10.nupkg.sha512",
     "C:\\Users\\Abdalla.Ahmed\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.10\\microsoft.extensions.caching.abstractions.9.0.10.nupkg.sha512",
